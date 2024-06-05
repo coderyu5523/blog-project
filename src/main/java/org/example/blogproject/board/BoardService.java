@@ -2,9 +2,11 @@ package org.example.blogproject.board;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.example.blogproject.user.SessionUser;
+import org.example.blogproject.user.User;
+import org.example.blogproject.user.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -12,16 +14,18 @@ import java.util.List;
 public class BoardService {
 
     private final BoardRepository boardRepository;
+    private final UserRepository userRepository;
 
     @Transactional
-    public void save(BoardRequest.SaveDTO requestDTO) throws IOException {
+    public Board save(BoardRequest.SaveDTO requestDTO, SessionUser sessionUser) {
         int targetWidth = 800;
         int targetHeight = 600;
 
         // 배경 이미지
 //        String backgroundImgUUID = ImageUtil.imgResizedAndDownloadAndUUID("배경 이미지", requestDTO.getBoardImg().getOriginalFilename(), requestDTO.getBoardImg(), targetWidth, targetHeight);
-
-        boardRepository.save(requestDTO.toEntity());
+       User user = userRepository.findById(sessionUser.getId()).get();
+       Board board = boardRepository.save(requestDTO.toEntity(user));
+        return board;
     }
 
     public void findAll() {

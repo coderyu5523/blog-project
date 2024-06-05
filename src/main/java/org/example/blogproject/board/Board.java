@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.blogproject.user.User;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
 
@@ -20,6 +21,7 @@ public class Board {
     private String content;
     private String category;
     private String boardImg;
+    @CreationTimestamp
     private Timestamp createdAt;
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
