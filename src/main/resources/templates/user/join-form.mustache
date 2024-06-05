@@ -1,0 +1,90 @@
+{{>layout/header}}
+<style>
+
+    * {
+        margin: 0px;
+        box-sizing: border-box;
+    }
+
+    .p-text {
+        font-size: 13px;
+        margin-top: 10px;
+        color: rgb(66, 66, 66);
+    }
+</style>
+<!-- 바디 start -->
+<br>
+<div class="div-card-container">
+    <div class="card div-card">
+        <div class="card-header" style="text-align: center">
+            <h2>회원가입</h2>
+        </div>
+        <div class="card-body">
+            <form action="/join" method="post" enctype="application/x-www-form-urlencoded">
+                <div>아이디</div>
+                <div class="mb-3">
+                    <input type="text" name="username" id="username" placeholder="Enter username.." value="ssar"
+                           class="form-control" onchange="check()"
+                           required>
+                </div>
+                <div>비밀번호</div>
+                <div class="mb-3">
+                    <input type="password" name="password" id="password" placeholder="Enter password.." value="1234"
+                           class="form-control"
+                           required>
+                </div>
+                <div>비밀번호 확인</div>
+                <div class="mb-3">
+                    <input type="password" name="passwordCheck" id="passwordCheck" placeholder="Enter password.." value="1234"
+                           class="form-control"
+                           required>
+                </div>
+
+                <div class="mb-3">
+                    <p class="p-text">휴대전화</p>
+                    <input type="tel" pattern="[0-9]{9, 11}" title="번호만 입력하세요" name="phone" id="phone"
+                           value="01092730000" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <p class="p-text">이메일</p>
+                    <input type="email" name="email" id="email" placeholder="Enter email.." value="greeni@green.ac.kr"
+                           class="form-control" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary form-control mt-3">회원가입</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    let isSameCheck = false;
+
+    function check() {
+        let username = $("#username").val();
+
+        $.ajax({
+            type: "get",
+            url: "/api/username-same-check",
+            data: {username: username}
+        }).done((res) => {
+            if (res.body == false) {
+                isSameCheck = true;
+                alert("사용가능한 아이디입니다.")
+            } else {
+                isSameCheck = false;
+                alert("아이디가 중복되었습니다.")
+            }
+        }).fail((res) => {
+            alert(res.responseJSON.msg);
+        });
+
+
+    }
+
+</script>
+
+
+<!-- 바디 end -->
+{{>layout/footer}}

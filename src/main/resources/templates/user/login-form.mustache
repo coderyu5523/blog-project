@@ -1,0 +1,42 @@
+{{> layout/header }}
+
+<div style="display: flex; justify-content: center">
+    <div class="card" style="width: 400px; margin-top: 5%; margin-bottom: 10%">
+        <div class="card-header" style="text-align: center">
+            <h2>로그인</h2>
+        </div>
+        <div class="card-body">
+            <form action="/login" method="post" enctype="application/x-www-form-urlencoded">
+                <div class="mb-3">
+                    <p>아이디 입력</p>
+                    <input type="text" name="username" id="username" placeholder="Enter username..."
+                           class="form-control" value="ssar">
+                </div>
+                <div class="mb-3">
+                    <p>비밀번호 입력</p>
+                    <input type="password" name="password" id="password" value="1234" placeholder="Enter password..."
+                           class="form-control">
+                </div>
+                <input type="submit" value="로그인" class="btn btn-primary form-control" style="height: 46px">
+            </form>
+
+            <div style="text-align: center; margin-top: 10px;">
+                <a href="https://your-kakao-login-link.com" class="btn btn-light" style="background-color: #FFEB00; border: none; color: black; display: flex; align-items: center; justify-content: center; width: 100%; padding: 10px 0; text-decoration: none;">
+                    <img src="https://static.011st.com/assets/img/svg/member/sns-kakao.svg" alt="Kakao Login" style="width: 24px; height: 24px; margin-right: 8px;">
+                    <span>카카오로 로그인</span>
+                </a>
+            </div>
+            <div style="text-align: center; margin-top: 10px;">
+                <a href="https://your-naver-login-link.com" class="btn btn-light" style="background-color: #1EC800; border: none; color: white; display: flex; align-items: center; justify-content: center; width: 100%; padding: 10px 0; text-decoration: none;">
+                    <img src="https://static.011st.com/assets/img/svg/member/sns-naver.svg" alt="Naver Login" style="width: 24px; height: 24px; margin-right: 8px;">
+                    <span>네이버로 로그인</span>
+                </a>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+<!-- 바디 end -->
+{{>layout/footer}}

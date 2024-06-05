@@ -1,0 +1,116 @@
+{{>layout/header}}
+<!-- 바디 start -->
+<main class="main-size">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <form action="/" method="get" class="form-inline">
+                <div class="input-group rounded box-tf">
+                    <input class="form-control me-2 rounded-end tf-search" type="text" placeholder="   키워드를 입력하세요"
+                           name="keyword" required/>
+                    <a href="#" class="text-body"><i class="fa-solid fa-magnifying-glass icon-search"></i></a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="div-layout">
+                <div class="div-header d-flex justify-content-between">
+                    <h3><b>스포츠</b></h3>
+                    <form action="/boards/sports" method="get" class="justify-content-end">
+                        <button class="btn btn-outline-primary">더보기</button>
+                    </form>
+                </div>
+                <div class="div-announcement">
+                    <table class="table table-hover" style="text-align: center">
+                        <tr>
+                            <th>번호</th>
+                            <th>제목</th>
+                            <th>작성일</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>스포츠 제목1</td>
+                            <td>작성일</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="div-layout">
+                <div class="div-header d-flex justify-content-between">
+                    <h3><b>게임</b></h3>
+                    <form action="/boards/games" method="get" class="justify-content-end">
+                        <button class="btn btn-outline-primary">더보기</button>
+                    </form>
+                </div>
+                <div class="div-announcement">
+                    <table class="table table-hover" style="text-align: center">
+                        <tr>
+                            <th>번호</th>
+                            <th>제목</th>
+                            <th>작성일</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>게임 제목1</td>
+                            <td>작성일</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="div-layout">
+                <div class="div-header d-flex justify-content-between">
+                    <h3><b>음식</b></h3>
+                    <form action="/boards/foods" method="get" class="justify-content-end">
+                        <button class="btn btn-outline-primary">더보기</button>
+                    </form>
+                </div>
+                <div class="div-announcement">
+                    <table class="table table-hover" style="text-align: center">
+                        <tr>
+                            <th>번호</th>
+                            <th>제목</th>
+                            <th>작성일</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>음식 제목1</td>
+                            <td>작성일</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="div-layout">
+                <div class="div-header d-flex justify-content-between">
+                    <h3><b>영화</b></h3>
+                    <form action="/boards/movies" method="get" class="justify-content-end">
+                        <button class="btn btn-outline-primary">더보기</button>
+                    </form>
+                </div>
+                <div class="div-announcement">
+                    <table class="table table-hover" style="text-align: center">
+                        <tr>
+                            <th>번호</th>
+                            <th>제목</th>
+                            <th>작성일</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>영화 제목1</td>
+                            <td>작성일</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- 바디 end -->
+{{>layout/footer}}
