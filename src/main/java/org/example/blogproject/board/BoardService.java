@@ -17,7 +17,7 @@ public class BoardService {
     private final UserRepository userRepository;
 
     @Transactional
-    public Board save(BoardRequest.SaveDTO requestDTO, SessionUser sessionUser) {
+    public BoardResponse.SaveDTO save(BoardRequest.SaveDTO requestDTO, SessionUser sessionUser) {
         int targetWidth = 800;
         int targetHeight = 600;
 
@@ -25,7 +25,7 @@ public class BoardService {
 //        String backgroundImgUUID = ImageUtil.imgResizedAndDownloadAndUUID("배경 이미지", requestDTO.getBoardImg().getOriginalFilename(), requestDTO.getBoardImg(), targetWidth, targetHeight);
        User user = userRepository.findById(sessionUser.getId()).get();
        Board board = boardRepository.save(requestDTO.toEntity(user));
-        return board;
+        return new BoardResponse.SaveDTO(board);
     }
 
     public void findAll() {

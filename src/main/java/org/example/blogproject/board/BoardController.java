@@ -51,9 +51,9 @@ public class BoardController {
     @PostMapping("/boards/save")
     public String save(BoardRequest.SaveDTO requstDTO) {
         SessionUser sessionUser = (SessionUser) session.getAttribute("sessionUser");
-        Board board = boardService.save(requstDTO,sessionUser);
+        BoardResponse.SaveDTO responseDTO = boardService.save(requstDTO,sessionUser);
 
-        return "redirect:/boards/"+board.getId();
+        return "redirect:/boards/"+responseDTO.getId();
     }
 
     @GetMapping("/boards/{id}")

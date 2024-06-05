@@ -1,11 +1,30 @@
 package org.example.blogproject.board;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Data;
 import org.example.blogproject.user.User;
 
 import java.sql.Timestamp;
 
 public class BoardResponse {
+
+    @Data
+    public static class SaveDTO{
+        private Integer id ;
+        private String title;
+        private String content;
+        private String category;
+        private User user;
+
+        public SaveDTO(Board board) {
+            this.id = board.getId();
+            this.title = board.getTitle();
+            this.content = board.getContent();
+            this.category = board.getCategory();
+            this.user = board.getUser();
+        }
+    }
+
     @Data
     public static class ListDTO {
         private String title;
