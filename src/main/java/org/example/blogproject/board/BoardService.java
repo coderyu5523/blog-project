@@ -37,7 +37,6 @@ public class BoardService {
         return new BoardResponse.DetailDTO(board);
     }
 
-    @Transactional
     public List<BoardResponse.SportsListDTO> sportsList() {
        List<Board> boardList = boardRepository.findBySprots().get();
        return boardList.stream().map(board -> new BoardResponse.SportsListDTO(board)).toList();
