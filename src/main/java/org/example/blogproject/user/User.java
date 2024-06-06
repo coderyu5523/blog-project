@@ -32,4 +32,13 @@ public class User {
         this.phone = phone;
         this.createdAt = createdAt;
     }
+
+    public void update(UserRequest.UpdateDTO requestDTO){
+        this.password = requestDTO.getPassword();
+        this.email = requestDTO.getEmail();
+        this.phone = requestDTO.getPhone();
+
+    }
+
+
 }

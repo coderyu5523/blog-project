@@ -48,4 +48,11 @@ public class UserService {
         User user = userRepository.findById(sessionUser.getId()).get();
         return new UserResponse.UpdateFormDTO(user);
     }
+
+    @Transactional
+    public UserResponse.UpdateDTO userUpdate(SessionUser sessionUser,UserRequest.UpdateDTO requestDTO) {
+       User user = userRepository.findById(sessionUser.getId()).get();
+       user.update(requestDTO);
+       return new UserResponse.UpdateDTO(user);
+    }
 }

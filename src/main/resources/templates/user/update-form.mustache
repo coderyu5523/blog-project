@@ -20,7 +20,7 @@
             <h2>회원정보 수정</h2>
         </div>
         <div class="card-body">
-            <form action="/join" method="post" enctype="application/x-www-form-urlencoded">
+            <form action="/users/update" method="post" enctype="application/x-www-form-urlencoded">
                 <div>아이디</div>
                 <div class="mb-3">
                     <input type="text" name="username" id="username" placeholder="Enter username.." value="{{UpdateFormDTO.username}}"
@@ -38,8 +38,8 @@
 
                 <div class="mb-3">
                     <p class="p-text">휴대전화</p>
-                    <input type="tel" pattern="[0-9]{9, 11}" title="번호만 입력하세요" name="phone" id="{{UpdateFormDTO.phone}}"
-                           value="01092730000" class="form-control" required>
+                    <input type="tel" pattern="[0-9]{9, 11}" title="번호만 입력하세요" name="phone" id="phone"
+                           value="{{UpdateFormDTO.phone}}" class="form-control" required>
                 </div>
 
                 <div class="mb-3">

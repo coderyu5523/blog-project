@@ -88,5 +88,22 @@ public class UserResponse {
         }
     }
 
+    @Data
+    public static class UpdateDTO{
+        private Integer id;
+        private String username;
+        private String email;
+        private String phone;
+        private Timestamp createdAt;
+
+        public UpdateDTO(User user) {
+            this.id = user.getId();
+            this.username = user.getUsername();
+            this.email = user.getEmail();
+            this.phone = user.getPhone();
+            this.createdAt = user.getCreatedAt();
+        }
+    }
+
 
 }

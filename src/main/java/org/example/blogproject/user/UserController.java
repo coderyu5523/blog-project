@@ -61,7 +61,15 @@ public class UserController {
     public String updateForm(HttpServletRequest request) {
         SessionUser sessionUser = (SessionUser) session.getAttribute("sessionUser");
         UserResponse.UpdateFormDTO responseDTO = userService.userUpdateForm(sessionUser);
-        request.setAttribute("UpdateFormDTO",responseDTO);
+        request.setAttribute("UpdateFormDTO", responseDTO);
         return "user/update-form";
+    }
+
+    @PostMapping("/users/update")
+    public String update(UserRequest.UpdateDTO requestDTO) {
+        SessionUser sessionUser = (SessionUser) session.getAttribute("sessionUser");
+        userService.userUpdate(sessionUser,requestDTO);
+
+        return "redirect:/user-info";
     }
 }
