@@ -33,19 +33,14 @@ public class BoardService {
         BoardResponse.MainDTO mainDTO = new BoardResponse.MainDTO();
 
         for (Board board : boardList) {
-            switch (board.getCategory()) {
-                case "스포츠":
-                    mainDTO.getSportsDTOs().add(new BoardResponse.MainDTO.SportsDTO(board));
-                    break;
-                case "영화":
-                    mainDTO.getMovieDTOs().add(new BoardResponse.MainDTO.MovieDTO(board));
-                    break;
-                case "게임":
-                    mainDTO.getGameDTOs().add(new BoardResponse.MainDTO.GameDTO(board));
-                    break;
-                case "음식":
-                    mainDTO.getFoodDTOs().add(new BoardResponse.MainDTO.FoodDTO(board));
-                    break;
+            if ("스포츠".equals(board.getCategory())) {
+                mainDTO.getSportsDTOs().add(new BoardResponse.MainDTO.SportsDTO(board));
+            } else if ("영화".equals(board.getCategory())) {
+                mainDTO.getMovieDTOs().add(new BoardResponse.MainDTO.MovieDTO(board));
+            } else if ("게임".equals(board.getCategory())) {
+                mainDTO.getGameDTOs().add(new BoardResponse.MainDTO.GameDTO(board));
+            } else if ("음식".equals(board.getCategory())) {
+                mainDTO.getFoodDTOs().add(new BoardResponse.MainDTO.FoodDTO(board));
             }
         }
         return mainDTO;
