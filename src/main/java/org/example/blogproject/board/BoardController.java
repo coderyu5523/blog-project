@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.swing.text.html.HTML;
-
 @RequiredArgsConstructor
 @Controller
 public class BoardController {
@@ -20,7 +18,7 @@ public class BoardController {
 
     @GetMapping("/")
     public String list() {
-        return "list";
+        return "index";
     }
 
     @GetMapping("/boards/games")

@@ -24,6 +24,11 @@ public class UserController {
         return "user/login-form";
     }
 
+    @GetMapping("/join-section")
+    public String joinSection() {
+        return "user/join-section";
+    }
+
     @PostMapping("/login")
     public String login(UserRequest.LoginDTO requestDTO) {
         SessionUser sessionUser = userService.login(requestDTO);
