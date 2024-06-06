@@ -13,5 +13,11 @@ public interface BoardRepository extends JpaRepository<Board, Integer> {
     Optional<Board> findByIdWithUser(@Param("boardId") Integer boardId);
     @Query("select b from Board b join fetch b.user where b.category = '스포츠'")
     Optional<List<Board>> findBySprots();
+    @Query("select b from Board b join fetch b.user where b.category = '게임'")
+    Optional<List<Board>> findByGame();
+    @Query("select b from Board b join fetch b.user where b.category = '음식'")
+    Optional<List<Board>> findByFood();
+    @Query("select b from Board b join fetch b.user where b.category = '영화'")
+    Optional<List<Board>> findByMovie();
 
 }

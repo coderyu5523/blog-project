@@ -24,7 +24,9 @@ public class BoardController {
     }
 
     @GetMapping("/boards/games")
-    public String gameList() {
+    public String gameList(HttpServletRequest request) {
+        List<BoardResponse.GameListDTO> responseDTO = boardService.gameList();
+        request.setAttribute("GameListDTO", responseDTO);
         return "list/games-list";
     }
 
@@ -36,12 +38,16 @@ public class BoardController {
     }
 
     @GetMapping("/boards/movies")
-    public String moviesList() {
+    public String moviesList(HttpServletRequest request) {
+        List<BoardResponse.MovieListDTO> responseDTO = boardService.movieList();
+        request.setAttribute("MovieListDTO", responseDTO);
         return "list/movies-list";
     }
 
     @GetMapping("/boards/foods")
-    public String foodsList() {
+    public String foodsList(HttpServletRequest request) {
+        List<BoardResponse.FoodListDTO> responseDTO = boardService.foodList();
+        request.setAttribute("FoodListDTO", responseDTO);
         return "list/foods-list";
     }
 

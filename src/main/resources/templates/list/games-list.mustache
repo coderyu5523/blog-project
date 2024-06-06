@@ -23,34 +23,15 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1</td>
-                <td><img src="../upload/no-image.jpg" alt="사진" width="50" height="50"></td>
-                <td><a href="/board/1" class="text-body">제목1</a></td>
-                <td><a href="/board/1" class="text-body">ssar</a></td>
-                <td>2024-05-31</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td><img src="../upload/no-image.jpg" alt="사진" width="50" height="50"></td>
-                <td><a href="/board/1" class="text-body">제목1</a></td>
-                <td><a href="/board/1" class="text-body">ssar</a></td>
-                <td>2024-05-31</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td><img src="../upload/no-image.jpg" alt="no-image.jpg" width="50" height="50"></td>
-                <td><a href="/board/1" class="text-body">제목1</a></td>
-                <td><a href="/board/1" class="text-body">ssar</a></td>
-                <td>2024-05-31</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td><img src="../upload/no-image.jpg" alt="사진" width="50" height="50"></td>
-                <td><a href="/board/1" class="text-body">제목1</a></td>
-                <td><a href="/board/1" class="text-body">ssar</a></td>
-                <td>2024-05-31</td>
-            </tr>
+            {{#GameListDTO}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td><img src="../upload/no-image.jpg" alt="사진" width="50" height="50"></td>
+                    <td><a href="/boards/{{id}}" class="text-body">{{title}}</a></td>
+                    <td><a href="/boards/{{id}}" class="text-body">{{username}}</a></td>
+                    <td>{{createdAt}}</td>
+                </tr>
+            {{/GameListDTO}}
             </tbody>
         </table>
         <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -67,8 +48,7 @@
                 <button class="btn btn-outline-primary">+작성</button>
             </form>
         </div>
-
-
+    </div>
 
 </main>
 <!-- 바디 end -->

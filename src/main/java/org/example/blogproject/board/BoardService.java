@@ -41,4 +41,19 @@ public class BoardService {
        List<Board> boardList = boardRepository.findBySprots().get();
        return boardList.stream().map(board -> new BoardResponse.SportsListDTO(board)).toList();
     }
+
+    public List<BoardResponse.GameListDTO> gameList() {
+        List<Board> boardList = boardRepository.findByGame().get();
+        return boardList.stream().map(board -> new BoardResponse.GameListDTO(board)).toList();
+    }
+
+    public List<BoardResponse.MovieListDTO> movieList() {
+        List<Board> boardList = boardRepository.findByMovie().get();
+        return boardList.stream().map(board -> new BoardResponse.MovieListDTO(board)).toList();
+    }
+
+    public List<BoardResponse.FoodListDTO> foodList() {
+        List<Board> boardList = boardRepository.findByFood().get();
+        return boardList.stream().map(board -> new BoardResponse.FoodListDTO(board)).toList();
+    }
 }

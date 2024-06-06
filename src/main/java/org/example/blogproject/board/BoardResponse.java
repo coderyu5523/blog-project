@@ -41,6 +41,51 @@ public class BoardResponse {
         }
     }
 
+    @Data
+    public static class GameListDTO{
+        private Integer id;
+        private String title;
+        private Timestamp createdAt;
+        private String username;
+
+        public GameListDTO(Board board) {
+            this.id = board.getId();
+            this.title = board.getTitle();
+            this.createdAt = board.getCreatedAt();
+            this.username = board.getUser().getUsername();
+        }
+    }
+
+    @Data
+    public static class FoodListDTO{
+        private Integer id;
+        private String title;
+        private Timestamp createdAt;
+        private String username;
+
+        public FoodListDTO(Board board) {
+            this.id = board.getId();
+            this.title = board.getTitle();
+            this.createdAt = board.getCreatedAt();
+            this.username = board.getUser().getUsername();
+        }
+    }
+
+    @Data
+    public static class MovieListDTO{
+        private Integer id;
+        private String title;
+        private Timestamp createdAt;
+        private String username;
+
+        public MovieListDTO(Board board) {
+            this.id = board.getId();
+            this.title = board.getTitle();
+            this.createdAt = board.getCreatedAt();
+            this.username = board.getUser().getUsername();
+        }
+    }
+
 
     @Data
     public static class DetailDTO{
