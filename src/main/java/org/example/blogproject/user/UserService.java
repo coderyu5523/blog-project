@@ -41,6 +41,11 @@ public class UserService {
     public UserResponse.UserInfoDTO userInfo(SessionUser sessionUser) {
         User user = userRepository.findById(sessionUser.getId()).get();
         List<Board> boardList = boardRepository.findByUserId(sessionUser.getId()).get();
-        return new UserResponse.UserInfoDTO(user,boardList);
+        return new UserResponse.UserInfoDTO(user, boardList);
+    }
+
+    public UserResponse.UpdateFormDTO userUpdateForm(SessionUser sessionUser) {
+        User user = userRepository.findById(sessionUser.getId()).get();
+        return new UserResponse.UpdateFormDTO(user);
     }
 }

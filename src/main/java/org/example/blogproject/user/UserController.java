@@ -44,15 +44,24 @@ public class UserController {
     }
 
     @GetMapping("/user-info")
-    public String userInfo(HttpServletRequest request){
-       SessionUser sessionUser = (SessionUser) session.getAttribute("sessionUser");
-       UserResponse.UserInfoDTO responseDTO = userService.userInfo(sessionUser);
-       request.setAttribute("UserInfoDTO",responseDTO);
+    public String userInfo(HttpServletRequest request) {
+        SessionUser sessionUser = (SessionUser) session.getAttribute("sessionUser");
+        UserResponse.UserInfoDTO responseDTO = userService.userInfo(sessionUser);
+        request.setAttribute("UserInfoDTO", responseDTO);
         return "user/profile";
     }
+
     @GetMapping("/logout")
-    public String logout(){
+    public String logout() {
         session.invalidate();
         return "redirect:/";
+    }
+
+    @GetMapping("/users/update-form")
+    public String updateForm(HttpServletRequest request) {
+        SessionUser sessionUser = (SessionUser) session.getAttribute("sessionUser");
+        UserResponse.UpdateFormDTO responseDTO = userService.userUpdateForm(sessionUser);
+        request.setAttribute("UpdateFormDTO",responseDTO);
+        return "user/update-form";
     }
 }

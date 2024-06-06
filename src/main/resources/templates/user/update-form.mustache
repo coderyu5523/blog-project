@@ -1,0 +1,62 @@
+{{>layout/header}}
+<style>
+
+    * {
+        margin: 0px;
+        box-sizing: border-box;
+    }
+
+    .p-text {
+        font-size: 13px;
+        margin-top: 10px;
+        color: rgb(66, 66, 66);
+    }
+</style>
+<!-- 바디 start -->
+<br>
+<div class="div-card-container">
+    <div class="card div-card">
+        <div class="card-header" style="text-align: center">
+            <h2>회원정보 수정</h2>
+        </div>
+        <div class="card-body">
+            <form action="/join" method="post" enctype="application/x-www-form-urlencoded">
+                <div>아이디</div>
+                <div class="mb-3">
+                    <input type="text" name="username" id="username" placeholder="Enter username.." value="{{UpdateFormDTO.username}}"
+                           class="form-control"
+                           required disabled>
+                </div>
+                <div>비밀번호</div>
+                <div class="mb-3">
+                    <input type="password" name="password" id="password" placeholder="Enter password.." class="form-control" required>
+                </div>
+                <div>비밀번호 확인</div>
+                <div class="mb-3">
+                    <input type="password" name="passwordCheck" id="passwordCheck" placeholder="Enter password.." class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <p class="p-text">휴대전화</p>
+                    <input type="tel" pattern="[0-9]{9, 11}" title="번호만 입력하세요" name="phone" id="{{UpdateFormDTO.phone}}"
+                           value="01092730000" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <p class="p-text">이메일</p>
+                    <input type="email" name="email" id="email" placeholder="Enter email.." value="{{UpdateFormDTO.email}}"
+                           class="form-control" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary form-control mt-3">회원정보 수정</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</script>
+
+
+<!-- 바디 end -->
+{{>layout/footer}}
