@@ -25,11 +25,22 @@ public class BoardResponse {
         }
     }
 
+
     @Data
-    public static class ListDTO {
+    public static class SportsListDTO{
+        private Integer id;
         private String title;
-        private String content;
+        private Timestamp createdAt;
+        private String username;
+
+        public SportsListDTO(Board board) {
+            this.id = board.getId();
+            this.title = board.getTitle();
+            this.createdAt = board.getCreatedAt();
+            this.username = board.getUser().getUsername();
+        }
     }
+
 
     @Data
     public static class DetailDTO{

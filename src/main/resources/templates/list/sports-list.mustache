@@ -23,34 +23,15 @@
             </tr>
             </thead>
             <tbody>
+            {{#SportsListDTO}}
             <tr>
-                <td>1</td>
+                <td>{{id}}</td>
                 <td><img src="../upload/no-image.jpg" alt="사진" width="50" height="50"></td>
-                <td><a href="/board/1" class="text-body">제목1</a></td>
-                <td><a href="/board/1" class="text-body">ssar</a></td>
-                <td>2024-05-31</td>
+                <td><a href="/boards/1" class="text-body">{{title}}</a></td>
+                <td><a href="/boards/1" class="text-body">{{username}}</a></td>
+                <td>{{createdAt}}</td>
             </tr>
-            <tr>
-                <td>1</td>
-                <td><img src="../upload/no-image.jpg" alt="사진" width="50" height="50"></td>
-                <td><a href="/board/1" class="text-body">제목1</a></td>
-                <td><a href="/board/1" class="text-body">ssar</a></td>
-                <td>2024-05-31</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td><img src="../upload/no-image.jpg" alt="no-image.jpg" width="50" height="50"></td>
-                <td><a href="/board/1" class="text-body">제목1</a></td>
-                <td><a href="/board/1" class="text-body">ssar</a></td>
-                <td>2024-05-31</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td><img src="../upload/no-image.jpg" alt="사진" width="50" height="50"></td>
-                <td><a href="/board/1" class="text-body">제목1</a></td>
-                <td><a href="/board/1" class="text-body">ssar</a></td>
-                <td>2024-05-31</td>
-            </tr>
+            {{/SportsListDTO}}
             </tbody>
         </table>
         <div style="display: flex; justify-content: space-between; align-items: center;">

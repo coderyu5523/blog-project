@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Controller
 public class BoardController {
@@ -27,7 +29,9 @@ public class BoardController {
     }
 
     @GetMapping("/boards/sports")
-    public String sportsList() {
+    public String sportsList(HttpServletRequest request) {
+        List<BoardResponse.SportsListDTO> responseDTO = boardService.sportsList();
+        request.setAttribute("SportsListDTO", responseDTO);
         return "list/sports-list";
     }
 
@@ -49,15 +53,15 @@ public class BoardController {
     @PostMapping("/boards/save")
     public String save(BoardRequest.SaveDTO requstDTO) {
         SessionUser sessionUser = (SessionUser) session.getAttribute("sessionUser");
-        BoardResponse.SaveDTO responseDTO = boardService.save(requstDTO,sessionUser);
+        BoardResponse.SaveDTO responseDTO = boardService.save(requstDTO, sessionUser);
 
-        return "redirect:/boards/"+responseDTO.getId();
+        return "redirect:/boards/" + responseDTO.getId();
     }
 
     @GetMapping("/boards/{id}")
-    public String detail(@PathVariable Integer id, HttpServletRequest request){
-       BoardResponse.DetailDTO responseDTO = boardService.detail(id);
-       request.setAttribute("DetailDTO", responseDTO);
+    public String detail(@PathVariable Integer id, HttpServletRequest request) {
+        BoardResponse.DetailDTO responseDTO = boardService.detail(id);
+        request.setAttribute("DetailDTO", responseDTO);
         return "board/detail";
     }
 
