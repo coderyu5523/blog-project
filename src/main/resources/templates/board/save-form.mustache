@@ -1,108 +1,93 @@
 {{> layout/header}}
 <div class="container mt-5 mb-5">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="div-layout">
-                <div class="div-header d-flex justify-content-between">
-                    <h3><b>스포츠</b></h3>
-                    <form action="/boards/sports" method="get" class="justify-content-end">
-                        <button class="btn btn-outline-primary">더보기</button>
-                    </form>
-                </div>
-                <div class="div-announcement fixed-height">
-                    <table class="table table-hover" style="text-align: center">
-                        <tr>
-                            <th>번호</th>
-                            <th>제목</th>
-                            <th>작성일</th>
-                        </tr>
-                        {{#sportsDTOs}}
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="border border-tertiary p-5">
+                <h1 class="text-center mb-4">게시글 등록하기</h1>
+                <hr>
+                <form action="/boards/save" method="post" enctype="multipart/form-data">
+                    <div>
+                        <!-- 이미지 업로드 시작 -->
+                        <div style="display: flex; justify-content: center; align-items: center">
+                            <!-- 백그라운드 이미지 업로드 -->
+                            <div class="upload d-flex flex-column col-6">
+                                <div class="position-relative">
+                                    <div class="box-container">
+                                        <div class="d-flex justify-content-center align-items-center"
+                                             style="width: 300px; height: 300px; border: 1px solid #E6E6E6; color: #E6E6E6;"
+                                             id="backgroundImgFile2">
+                                            <b>사진을 등록해 주세요.</b>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="file" id="boardImg" name="boardImg"
+                                       class="real-upload mx-auto d-block mt-2" accept="image/*" required multiple>
+                            </div>
+
+                        </div>
+                        <script>
+                            $(document).ready(function () {
+                                $('#backgroundImgFile').change(function (event) {
+                                    if (this.files && this.files[0]) {
+                                        var reader = new FileReader();
+                                        reader.onload = function (e) {
+                                            $('#backgroundImgFile2').html('<img src="' + e.target.result + '" style="width: 100%; height: 100%">');
+                                        };
+                                        reader.readAsDataURL(this.files[0]);
+                                        let fileName = this.files[0].name;
+                                        console.log(fileName);
+                                    }
+                                });
+
+                                $('#badgeImgFile').change(function (event) {
+                                    if (this.files && this.files[0]) {
+                                        var reader = new FileReader();
+                                        reader.onload = function (e) {
+                                            $('#badgeImgFile2').html('<img src="' + e.target.result + '" style="width: 100%; height: 100%">');
+                                        };
+                                        reader.readAsDataURL(this.files[0]);
+                                    }
+                                });
+                            });
+                        </script>
+                        <hr>
+                        <table class="table">
                             <tr>
-                                <td>{{id}}</td>
-                                <td>{{title}}</td>
-                                <td>{{createdAt}}</td>
+                                <td>카테고리</td>
+                                <td>
+                                    <select name="category" class="form-control">
+                                        <option value="sports">스포츠</option>
+                                        <option value="game">게임</option>
+                                        <option value="food">음식</option>
+                                        <option value="movie">영화</option>
+                                    </select>
+                                </td>
                             </tr>
-                        {{/sportsDTOs}}
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="div-layout">
-                <div class="div-header d-flex justify-content-between">
-                    <h3><b>게임</b></h3>
-                    <form action="/boards/games" method="get" class="justify-content-end">
-                        <button class="btn btn-outline-primary">더보기</button>
-                    </form>
-                </div>
-                <div class="div-announcement fixed-height">
-                    <table class="table table-hover" style="text-align: center">
-                        <tr>
-                            <th>번호</th>
-                            <th>제목</th>
-                            <th>작성일</th>
-                        </tr>
-                        {{#gameDTOs}}
                             <tr>
-                                <td>{{id}}</td>
-                                <td>{{title}}</td>
-                                <td>{{createdAt}}</td>
+                                <td>제목</td>
+                                <td><input name="title" type="text" class="form-control"></td>
                             </tr>
-                        {{/gameDTOs}}
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="div-layout">
-                <div class="div-header d-flex justify-content-between">
-                    <h3><b>음식</b></h3>
-                    <form action="/boards/foods" method="get" class="justify-content-end">
-                        <button class="btn btn-outline-primary">더보기</button>
-                    </form>
-                </div>
-                <div class="div-announcement fixed-height">
-                    <table class="table table-hover" style="text-align: center">
-                        <tr>
-                            <th>번호</th>
-                            <th>제목</th>
-                            <th>작성일</th>
-                        </tr>
-                        {{#foodDTOs}}
+
+
                             <tr>
-                                <td>{{id}}</td>
-                                <td>{{title}}</td>
-                                <td>{{createdAt}}</td>
+                                <td>내용</td>
+                                <td>
+                                    <textarea name="content" class="form-control" style="height: 300px"></textarea>
+                                </td>
                             </tr>
-                        {{/foodDTOs}}
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="div-layout">
-                <div class="div-header d-flex justify-content-between">
-                    <h3><b>영화</b></h3>
-                    <form action="/boards/movies" method="get" class="justify-content-end">
-                        <button class="btn btn-outline-primary">더보기</button>
-                    </form>
-                </div>
-                <div class="div-announcement fixed-height">
-                    <table class="table table-hover" style="text-align: center">
-                        <tr>
-                            <th>번호</th>
-                            <th>제목</th>
-                            <th>작성일</th>
-                        </tr>
-                        {{#movieDTOs}}
-                            <tr>
-                                <td>{{id}}</td>
-                                <td>{{title}}</td>
-                                <td>{{createdAt}}</td>
-                            </tr>
-                        {{/movieDTOs}}
-                    </table>
-                </div>
+
+
+                        </table>
+                        <br>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="button-post-cancel">
+                            <button type="button" onclick="location.href='/'" class="btn btn-outline-dark">취소</button>
+                            <button type="submit" class="btn btn-outline-dark">등록</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

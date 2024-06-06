@@ -2,119 +2,125 @@
 <!-- 바디 start -->
 {{#UserInfoDTO}}
 
-<main class="main-size">
-    <div class="div-body">
-        <div class="div-layout" style="height: 800px">
-            <div class="d-flex justify-content-between">
-                <h5>안녕하세요, {{username}}님</h5>
-                <div style="display: flex; justify-content: space-evenly; width: 150px">
-                    <form action="/users/{{id}}/update-form"> <!-- 수정 하기 -->
-                        <button class="btn btn-outline-warning">
-                            <i class="fa-solid fa-user-pen icon-size"></i>
-                        </button>
-                    </form>
-                    <form action="/users/{{id}}/delete"> <!-- 탈퇴 하기 -->
-                        <button class="btn btn-outline-danger">
-                            <i class="fa-solid fa-user-xmark icon-size"></i>
-                        </button>
-                    </form>
+    <main class="main-size">
+        <div class="div-body">
+            <div class="div-layout" style="height: 1000px">
+                <div class="d-flex justify-content-between">
+                    <h5>안녕하세요, {{username}}님</h5>
+                    <div style="display: flex; justify-content: space-evenly; width: 150px">
+                        <form action="/users/{{id}}/update-form"> <!-- 수정 하기 -->
+                            <button class="btn btn-outline-warning">
+                                <i class="fa-solid fa-user-pen icon-size"></i>
+                            </button>
+                        </form>
+                        <form action="/users/{{id}}/delete"> <!-- 탈퇴 하기 -->
+                            <button class="btn btn-outline-danger">
+                                <i class="fa-solid fa-user-xmark icon-size"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
-            </div>
 
-            <div>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th><h3>개인정보</h3></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th>아이디</th>
-                        <td>{{username}}</td>
-                    </tr>
-
-
-                    <tr>
-                        <th>휴대전화</th>
-                        <td>{{phone}}</td>
-                    </tr>
-
-                    <tr>
-                        <th>E-MAIL</th>
-                        <td>{{email}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-
-            </div>
-
-            <hr>
-            <!--작성글-->
-            <div class="div-layout">
-                <div class="div-header d-flex justify-content-start">
-                    <h2><b>내가 작성한 글</b></h2>
-                </div>
-                <div class="div-resume">
-                    <table class="table table-hover" style="text-align: center">
+                <div>
+                    <table class="table">
+                        <thead>
                         <tr>
-                            <td>제목</td>
-                            <td>게시일자</td>
-                            <td></td>
+                            <th><h3>개인정보</h3></th>
                         </tr>
+                        </thead>
+                        <tbody>
                         <tr>
-                            <td><a href="/boards/1">제목1</a></td>
-                            <td>작성일</td>
-                            <td>
-                                <div style="display: flex; justify-content: end">
-                                    <form action="/boards/1/update-form">
-                                        <button class="btn btn-outline-primary">수정</button>&nbsp;
-                                    </form>
-                                    <form action="/boards/1/delete" method="post">
-                                        <button class="btn btn-primary">삭제</button>
-                                    </form>
-                                    <!--공고별 지원 현황 보기?-->
-                                </div>
-                            </td>
+                            <th>아이디</th>
+                            <td>{{username}}</td>
                         </tr>
+
+
+                        <tr>
+                            <th>휴대전화</th>
+                            <td>{{phone}}</td>
+                        </tr>
+
+                        <tr>
+                            <th>E-MAIL</th>
+                            <td>{{email}}</td>
+                        </tr>
+                        </tbody>
                     </table>
-                </div>
-            </div>
 
-            <hr>
-            <!--작성글-->
-            <div class="div-layout">
-                <div class="div-header d-flex justify-content-start">
-                    <h2><b>내가 작성한 댓글</b></h2>
                 </div>
-                <div class="div-resume">
-                    <table class="table table-hover" style="text-align: center">
-                        <tr>
-                            <td>제목</td>
-                            <td>게시일자</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><a href="/boards/1">제목1</a></td>
-                            <td>작성일</td>
-                            <td>
-                                <div style="display: flex; justify-content: end">
-                                    <form action="/boards/1/update-form">
-                                        <button class="btn btn-outline-primary">수정</button>&nbsp;
-                                    </form>
-                                    <form action="/boards/1/delete" method="post">
-                                        <button class="btn btn-primary">삭제</button>
-                                    </form>
-                                    <!--공고별 지원 현황 보기?-->
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
+
+                <hr>
+                <!--작성글-->
+                <div class="div-layout">
+                    <div class="div-header d-flex justify-content-start">
+                        <h2><b>내가 작성한 글</b></h2>
+                    </div>
+                    <div class="div-profile">
+                        <table class="table table-hover" style="text-align: center">
+                            <tr>
+                                <td>번호</td>
+                                <td>제목</td>
+                                <td>카테고리</td>
+                                <td>게시일자</td>
+                                <td></td>
+                            </tr>
+                            {{#boards}}
+                                <tr>
+                                    <td>{{id}}</td>
+                                    <td><a href="/boards/{{id}}">{{title}}</a></td>
+                                    <td><a href="/boards/{{categoryFormat}}">{{category}}</a></td>
+                                    <td>{{createdAt}}</td>
+                                    <td>
+                                        <div style="display: flex; justify-content: end">
+                                            <form action="/boards/{{id}}/update-form">
+                                                <button class="btn btn-outline-primary">수정</button>
+                                            </form>
+                                            <form action="/boards/{{id}}/delete" method="post">
+                                                <button class="btn btn-primary">삭제</button>
+                                            </form>
+                                            <!--공고별 지원 현황 보기?-->
+                                        </div>
+                                    </td>
+                                </tr>
+                            {{/boards}}
+                        </table>
+                    </div>
+                </div>
+
+                <hr>
+                <!--작성글-->
+                <div class="div-layout">
+                    <div class="div-header d-flex justify-content-start">
+                        <h2><b>내가 작성한 댓글</b></h2>
+                    </div>
+                    <div class="div-profile">
+                        <table class="table table-hover" style="text-align: center">
+                            <tr>
+                                <td>제목</td>
+                                <td>게시일자</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><a href="/boards/1">제목1</a></td>
+                                <td>작성일</td>
+                                <td>
+                                    <div style="display: flex; justify-content: end">
+                                        <form action="/boards/1/update-form">
+                                            <button class="btn btn-outline-primary">수정</button>&nbsp;
+                                        </form>
+                                        <form action="/boards/1/delete" method="post">
+                                            <button class="btn btn-primary">삭제</button>
+                                        </form>
+                                        <!--공고별 지원 현황 보기?-->
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</main>
+    </main>
 {{/UserInfoDTO}}
 
 <!-- 바디 end -->

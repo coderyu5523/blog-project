@@ -2,8 +2,11 @@ package org.example.blogproject.user;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.example.blogproject.board.Board;
+import org.example.blogproject.board.BoardRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -11,6 +14,7 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final BoardRepository boardRepository;
 
     @Transactional
     public UserResponse.JoinDTO join(UserRequest.JoinDTO requestDTO) {
@@ -35,7 +39,8 @@ public class UserService {
     }
 
     public UserResponse.UserInfoDTO userInfo(SessionUser sessionUser) {
-       User user = userRepository.findById(sessionUser.getId()).get();
-       return new UserResponse.UserInfoDTO(user);
+        User user = userRepository.findById(sessionUser.getId()).get();
+        List<Board> boardList = boardRepository.findByUserId(sessionUser.getId()).get();
+        return new UserResponse.UserInfoDTO(user,boardList);
     }
 }
