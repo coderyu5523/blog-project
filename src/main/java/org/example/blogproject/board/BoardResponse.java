@@ -4,9 +4,71 @@ import lombok.Data;
 import org.example.blogproject._core.utils.DateFormat;
 import org.example.blogproject.user.User;
 
-import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BoardResponse {
+
+    @Data
+    public static class MainDTO {
+        private List<GameDTO> gameDTOs = new ArrayList<>();
+        private List<SportsDTO> sportsDTOs = new ArrayList<>();
+        private List<FoodDTO> foodDTOs = new ArrayList<>();
+        private List<MovieDTO> movieDTOs = new ArrayList<>();
+
+        @Data
+        public static class GameDTO {
+            private int id;
+            private String title;
+            private String createdAt;
+
+            public GameDTO(Board board) {
+                this.id = board.getId();
+                this.title = board.getTitle();
+                this.createdAt = DateFormat.formatTimestamp(board.getCreatedAt());
+            }
+        }
+
+        @Data
+        public static class SportsDTO {
+            private int id;
+            private String title;
+            private String createdAt;
+
+            public SportsDTO(Board board) {
+                this.id = board.getId();
+                this.title = board.getTitle();
+                this.createdAt = DateFormat.formatTimestamp(board.getCreatedAt());
+            }
+        }
+
+        @Data
+        public static class FoodDTO {
+            private int id;
+            private String title;
+            private String createdAt;
+
+            public FoodDTO(Board board) {
+                this.id = board.getId();
+                this.title = board.getTitle();
+                this.createdAt = DateFormat.formatTimestamp(board.getCreatedAt());
+            }
+        }
+
+        @Data
+        public static class MovieDTO {
+            private int id;
+            private String title;
+            private String createdAt;
+
+            public MovieDTO(Board board) {
+                this.id = board.getId();
+                this.title = board.getTitle();
+                this.createdAt = DateFormat.formatTimestamp(board.getCreatedAt());
+            }
+        }
+    }
+
 
     @Data
     public static class SaveDTO{

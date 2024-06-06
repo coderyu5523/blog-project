@@ -23,14 +23,34 @@ public class BoardService {
 
         // 배경 이미지
 //        String backgroundImgUUID = ImageUtil.imgResizedAndDownloadAndUUID("배경 이미지", requestDTO.getBoardImg().getOriginalFilename(), requestDTO.getBoardImg(), targetWidth, targetHeight);
-       User user = userRepository.findById(sessionUser.getId()).get();
-       Board board = boardRepository.save(requestDTO.toEntity(user));
+        User user = userRepository.findById(sessionUser.getId()).get();
+        Board board = boardRepository.save(requestDTO.toEntity(user));
         return new BoardResponse.SaveDTO(board);
     }
 
-    public void findAll() {
+    public BoardResponse.MainDTO findAll() {
         List<Board> boardList = boardRepository.findAll();
+        BoardResponse.MainDTO mainDTO = new BoardResponse.MainDTO();
+
+        for (Board board : boardList) {
+            switch (board.getCategory()) {
+                case "스포츠":
+                    mainDTO.getSportsDTOs().add(new BoardResponse.MainDTO.SportsDTO(board));
+                    break;
+                case "영화":
+                    mainDTO.getMovieDTOs().add(new BoardResponse.MainDTO.MovieDTO(board));
+                    break;
+                case "게임":
+                    mainDTO.getGameDTOs().add(new BoardResponse.MainDTO.GameDTO(board));
+                    break;
+                case "음식":
+                    mainDTO.getFoodDTOs().add(new BoardResponse.MainDTO.FoodDTO(board));
+                    break;
+            }
+        }
+        return mainDTO;
     }
+
 
     public BoardResponse.DetailDTO detail(Integer boardId) {
         Board board = boardRepository.findByIdWithUser(boardId).get();
@@ -38,8 +58,8 @@ public class BoardService {
     }
 
     public List<BoardResponse.SportsListDTO> sportsList() {
-       List<Board> boardList = boardRepository.findBySprots().get();
-       return boardList.stream().map(board -> new BoardResponse.SportsListDTO(board)).toList();
+        List<Board> boardList = boardRepository.findBySprots().get();
+        return boardList.stream().map(board -> new BoardResponse.SportsListDTO(board)).toList();
     }
 
     public List<BoardResponse.GameListDTO> gameList() {

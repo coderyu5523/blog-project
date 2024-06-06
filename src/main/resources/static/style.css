@@ -98,39 +98,11 @@ a {
     top: 10px;
     left: 270px;
 }
-
-/* 헤더 end */
-
-
-/* 광고 start */
 .div-container {
     margin: 30px 10px;
     height: 100%;
 }
 
-.div-ad-img1 {
-    background-image: url(images/ad1.png);
-    height: 150px;
-    border-radius: 20px;
-    background-size: 100% 100%;
-}
-
-
-/* 광고창 end */
-
-
-/* 바디 start */
-.sidenav-container {
-    height: 1000px;
-    position: relative;
-}
-
-.sidenav {
-    position: sticky;
-    top: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-}
 
 
 .div-recommendation {
@@ -139,39 +111,7 @@ a {
     color: rgb(66, 66, 66);
 }
 
-.section-body {
-    margin: 30px 0;
-}
 
-.div-recommendation-img {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-column-gap: 10px;
-}
-
-.div-recommendation-img-1 {
-    background-image: url(images/maincompany1.png);
-    height: 250px;
-    background-size: 100% 100%;
-    border-radius: 20px;
-
-}
-
-.div-recommendation-img-2 {
-    background-image: url(images/maincompany2.png);
-    height: 250px;
-    background-size: 100% 100%;
-    border-radius: 20px;
-
-}
-
-.div-recommendation-img-3 {
-    background-image: url(images/maincompany3.png);
-    height: 250px;
-    background-size: 100% 100%;
-    border-radius: 20px;
-
-}
 
 .div-recommendation-text-1 {
     margin: 5px 0;
@@ -190,140 +130,19 @@ a {
 }
 
 
-
-.div-recommendation-box {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 10px;
-}
-
-.div-company-img {
-    height: 180px;
-    background-size: 100% 100%;
-    border-radius: 20px;
-}
-
-.div-company-img-네이버 {
-    background-image: url(images/네이버.jpg);
-    height: 180px;
-    background-size: 100% 100%;
-    border-radius: 20px;
-}
-.div-company-img-카카오 {
-    background-image: url(images/카카오.jpg);
-    height: 180px;
-    background-size: 100% 100%;
-    border-radius: 20px;
-}
-.div-company-img-라인 {
-    background-image: url(images/라인.jpg);
-    height: 180px;
-    background-size: 100% 100%;
-    border-radius: 20px;
-}
-.div-company-img-쿠팡 {
-    background-image: url(images/쿠팡.jpg);
-    height: 180px;
-    background-size: 100% 100%;
-    border-radius: 20px;
-}
-.div-company-img-배달의민족 {
-    background-image: url(images/배달의민족.jpg);
-    height: 180px;
-    background-size: 100% 100%;
-    border-radius: 20px;
+.fixed-height {
+    height: 200px;
+    overflow-y: auto;
 }
 
 
 
-
-.employer-people-image1 {
-    background-image: url(images/people.jpg);
-    width: 150px;
-    height: 180px;
-    background-size: 100% 100%;
-    border-radius: 20px;
-
-}
-
-.employer-people-image2 {
-    background-image: url(images/people1.jpg);
-    width: 150px;
-    height: 180px;
-    background-size: 100% 100%;
-    border-radius: 20px;
-
-}
-.employer-people-image3 {
-    background-image: url(images/people2.jpg);
-    width: 150px;
-    height: 180px;
-    background-size: 100% 100%;
-    border-radius: 20px;
-
-}
-
-.employer-people-image4 {
-    background-image: url(images/people3.jpg);
-    width: 150px;
-    height: 180px;
-    background-size: 100% 100%;
-    border-radius: 20px;
-
-}
-
-.employer-people-image5 {
-    background-image: url(images/people4.jpg);
-    width: 150px;
-    height: 180px;
-    background-size: 100% 100%;
-    border-radius: 20px;
-
-}
-
-
-.div-recommendation-people {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-column-gap: 10px;
-
-}
-
-
-.div-job-sector {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    height: 120px;
-}
 
 
 .page-link {
     color: black !important;
 }
 
-
-/* KSJ body start */
-
-.div-resume-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 2fr 1fr 1fr;
-}
-
-.div-apply-col{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-}
-
-.table-image {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.td-image {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
-}
 
 
 .div-body {
@@ -346,18 +165,6 @@ a {
     margin-bottom: 5%;
 }
 
-.div-information {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-column-gap: 5%;
-}
-
-.div-information-grid,
-.div-resume,
-.div-announcement,
-.div-applicant {
-    width: 100%;
-}
 
 .button {
     margin-left: 10px;
@@ -371,41 +178,13 @@ a {
     display: flex;
 }
 
-.td-resume,
-.td-announcement,
-.td-applicant {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 
-/* KSJ body end */
-
-/* KJS body start */
-
-.table-resume-notice {
-    border: 2px solid rgb(219, 219, 219);
-    width: 100%;
-    margin-bottom: 30px;
-}
-
-.table-resume-notice tr {
-    border: 1px solid rgb(219, 219, 219);
-}
-
-.table-resume-notice td {
-    border: 1px solid rgb(219, 219, 219);
-    font-size: 15px;
-    padding: 10px;
-}
 
 .col-1 {
     border: none;
 }
 
-.table-td-width-10 {
-    width: 10%;
-}
+
 
 .input-width30 {
     width: 30%;
@@ -423,41 +202,15 @@ a {
     width: 5%;
 }
 
-.title-inline {
-    display: inline-block;
-}
 
-.textarea-work-size {
-    height: 200px;
-    width: 100%;
-}
-
-.textarea-introduction-size {
-    height: 300px;
-    width: 100%;
-}
 
 .button-post-cancel {
     text-align: center;
 }
 
-/* KJS body end */
-
-/* CYJ body starts */
-
-/* CYJ body end */
-
-/* footer */
 
 
-.div-footer-top {
-    /* margin-bottom: 30px; */
-    font-weight: bold;
-    width: 1000px;
-    margin: 0px auto 30px auto;
-}
 
-/* jjh */
 
 th {
     vertical-align: middle;
@@ -480,10 +233,7 @@ td {
     text-align: end;
 }
 
-.card-body-container {
-    width: 80%;
-    justify-content: center;
-}
+
 
 .btn-container {
     display: flex;

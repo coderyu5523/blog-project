@@ -19,7 +19,9 @@ public class BoardController {
     private final HttpSession session;
 
     @GetMapping("/")
-    public String list() {
+    public String list(HttpServletRequest request) {
+        BoardResponse.MainDTO responseDTO = boardService.findAll();
+        request.setAttribute("MainDTO", responseDTO);
         return "index";
     }
 
