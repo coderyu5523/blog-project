@@ -1,7 +1,7 @@
 package org.example.blogproject.board;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Data;
+import org.example.blogproject._core.utils.DateFormat;
 import org.example.blogproject.user.User;
 
 import java.sql.Timestamp;
@@ -30,13 +30,13 @@ public class BoardResponse {
     public static class SportsListDTO{
         private Integer id;
         private String title;
-        private Timestamp createdAt;
+        private String createdAt;
         private String username;
 
         public SportsListDTO(Board board) {
             this.id = board.getId();
             this.title = board.getTitle();
-            this.createdAt = board.getCreatedAt();
+            this.createdAt = DateFormat.formatTimestamp(board.getCreatedAt());
             this.username = board.getUser().getUsername();
         }
     }
@@ -45,13 +45,13 @@ public class BoardResponse {
     public static class GameListDTO{
         private Integer id;
         private String title;
-        private Timestamp createdAt;
+        private String createdAt;
         private String username;
 
         public GameListDTO(Board board) {
             this.id = board.getId();
             this.title = board.getTitle();
-            this.createdAt = board.getCreatedAt();
+            this.createdAt = DateFormat.formatTimestamp(board.getCreatedAt());
             this.username = board.getUser().getUsername();
         }
     }
@@ -60,13 +60,13 @@ public class BoardResponse {
     public static class FoodListDTO{
         private Integer id;
         private String title;
-        private Timestamp createdAt;
+        private String createdAt;
         private String username;
 
         public FoodListDTO(Board board) {
             this.id = board.getId();
             this.title = board.getTitle();
-            this.createdAt = board.getCreatedAt();
+            this.createdAt = DateFormat.formatTimestamp(board.getCreatedAt());
             this.username = board.getUser().getUsername();
         }
     }
@@ -75,13 +75,13 @@ public class BoardResponse {
     public static class MovieListDTO{
         private Integer id;
         private String title;
-        private Timestamp createdAt;
+        private String createdAt;
         private String username;
 
         public MovieListDTO(Board board) {
             this.id = board.getId();
             this.title = board.getTitle();
-            this.createdAt = board.getCreatedAt();
+            this.createdAt = DateFormat.formatTimestamp(board.getCreatedAt());
             this.username = board.getUser().getUsername();
         }
     }
@@ -91,7 +91,7 @@ public class BoardResponse {
     public static class DetailDTO{
         private String title;
         private String content;
-        private Timestamp createdAt;
+        private String createdAt;
         private String category;
         private String boardImg;
         private User user;
@@ -99,7 +99,7 @@ public class BoardResponse {
         public DetailDTO(Board board) {
             this.title = board.getTitle();
             this.content = board.getContent();
-            this.createdAt = board.getCreatedAt();
+            this.createdAt = DateFormat.formatTimestampWithTime(board.getCreatedAt());
             this.category = board.getCategory();
             this.boardImg = board.getBoardImg();
             this.user = board.getUser();
