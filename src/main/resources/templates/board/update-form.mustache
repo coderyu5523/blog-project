@@ -1,0 +1,90 @@
+{{> layout/header}}
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            {{#UpdateFormDTO}}
+                <div class="border border-tertiary p-5">
+                    <h1 class="text-center mb-4">게시글 수정하기</h1>
+                    <hr>
+                    <form action="/boards/{{id}}/update" method="post" enctype="multipart/form-data">
+                        <div>
+                            <!-- 이미지 업로드 시작 -->
+                            <div style="display: flex; justify-content: center; align-items: center">
+                                <!-- 백그라운드 이미지 업로드 -->
+                                <div class="upload d-flex flex-column col-6">
+                                    <div class="position-relative">
+                                        <div class="box-container">
+                                            <div class="d-flex justify-content-center align-items-center"
+                                                 style="width: 300px; height: 300px; border: 1px solid #E6E6E6; color: #E6E6E6;"
+                                                 id="backgroundImgFile2">
+                                                <b>사진을 등록해 주세요.</b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="file" id="boardImg" name="boardImg"
+                                           class="real-upload mx-auto d-block mt-2" accept="image/*" required multiple>
+                                </div>
+
+                            </div>
+                            <script>
+                                $(document).ready(function () {
+                                    $('#backgroundImgFile').change(function (event) {
+                                        if (this.files && this.files[0]) {
+                                            var reader = new FileReader();
+                                            reader.onload = function (e) {
+                                                $('#backgroundImgFile2').html('<img src="' + e.target.result + '" style="width: 100%; height: 100%">');
+                                            };
+                                            reader.readAsDataURL(this.files[0]);
+                                            let fileName = this.files[0].name;
+                                            console.log(fileName);
+                                        }
+                                    });
+
+                                    $('#badgeImgFile').change(function (event) {
+                                        if (this.files && this.files[0]) {
+                                            var reader = new FileReader();
+                                            reader.onload = function (e) {
+                                                $('#badgeImgFile2').html('<img src="' + e.target.result + '" style="width: 100%; height: 100%">');
+                                            };
+                                            reader.readAsDataURL(this.files[0]);
+                                        }
+                                    });
+                                });
+                            </script>
+                            <hr>
+                            <table class="table">
+                                <tr>
+                                    <td>카테고리</td>
+                                    <td><input name="catogory" type="text" class="form-control" value="{{category}}" disabled></td>
+                                </tr>
+                                <tr>
+                                    <td>제목</td>
+                                    <td><input name="title" type="text" class="form-control" value="{{title}}"></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>내용</td>
+                                    <td>
+                                        <textarea name="content" class="form-control" style="height: 300px">{{content}}</textarea>
+                                    </td>
+                                </tr>
+
+
+                            </table>
+                            <br>
+                        </div>
+
+                        <div class="card-footer">
+                            <div class="button-post-cancel">
+                                <button type="button" onclick="location.href='/'" class="btn btn-outline-dark">취소
+                                </button>
+                                <button type="submit" class="btn btn-outline-dark">등록</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            {{/UpdateFormDTO}}
+        </div>
+    </div>
+</div>

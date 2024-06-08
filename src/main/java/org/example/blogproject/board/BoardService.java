@@ -71,4 +71,9 @@ public class BoardService {
         List<Board> boardList = boardRepository.findByFood().get();
         return boardList.stream().map(board -> new BoardResponse.FoodListDTO(board)).toList();
     }
+
+    public BoardResponse.UpdateFormDTO updateForm(Integer boardId, SessionUser sessionUser) {
+        Board board = boardRepository.findById(boardId).get();
+        return new BoardResponse.UpdateFormDTO(board);
+    }
 }

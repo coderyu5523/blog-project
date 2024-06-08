@@ -71,8 +71,8 @@ public class BoardResponse {
 
 
     @Data
-    public static class SaveDTO{
-        private Integer id ;
+    public static class SaveDTO {
+        private Integer id;
         private String title;
         private String content;
         private String category;
@@ -89,7 +89,7 @@ public class BoardResponse {
 
 
     @Data
-    public static class SportsListDTO{
+    public static class SportsListDTO {
         private Integer id;
         private String title;
         private String createdAt;
@@ -104,7 +104,7 @@ public class BoardResponse {
     }
 
     @Data
-    public static class GameListDTO{
+    public static class GameListDTO {
         private Integer id;
         private String title;
         private String createdAt;
@@ -119,7 +119,7 @@ public class BoardResponse {
     }
 
     @Data
-    public static class FoodListDTO{
+    public static class FoodListDTO {
         private Integer id;
         private String title;
         private String createdAt;
@@ -134,7 +134,7 @@ public class BoardResponse {
     }
 
     @Data
-    public static class MovieListDTO{
+    public static class MovieListDTO {
         private Integer id;
         private String title;
         private String createdAt;
@@ -150,7 +150,7 @@ public class BoardResponse {
 
 
     @Data
-    public static class DetailDTO{
+    public static class DetailDTO {
         private String title;
         private String content;
         private String createdAt;
@@ -168,8 +168,8 @@ public class BoardResponse {
         }
 
         @Data
-        class UserDTO{
-            private Integer id ;
+        class UserDTO {
+            private Integer id;
             private String username;
 
             public UserDTO(UserDTO user) {
@@ -178,5 +178,20 @@ public class BoardResponse {
             }
         }
 
+    }
+
+    @Data
+    public static class UpdateFormDTO {
+        private Integer id;
+        private String title;
+        private String content;
+        private String category;
+
+        public UpdateFormDTO(Board board) {
+            this.id = board.getId();
+            this.title = board.getTitle();
+            this.content = board.getContent();
+            this.category = board.getCategory();
+        }
     }
 }
