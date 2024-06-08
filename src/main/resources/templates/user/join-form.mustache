@@ -27,7 +27,9 @@
                     <input type="text" name="username" id="username" placeholder="Enter username.." value="love"
                            class="form-control" onchange="check()"
                            required>
+                    <div id="usernameMessage" class="p-text"></div> <!-- 메시지를 표시할 요소 -->
                 </div>
+
                 <div>비밀번호</div>
                 <div class="mb-3">
                     <input type="password" name="password" id="password" placeholder="Enter password.." value="1234"
@@ -70,18 +72,16 @@
             url: "/api/username-same-check",
             data: {username: username}
         }).done((res) => {
-            if (res.body == false) {
+            if (res.body === false) {
                 isSameCheck = true;
-                alert("사용가능한 아이디입니다.")
+                $("#usernameMessage").text("사용 가능한 아이디입니다.").css("color", "green");
             } else {
                 isSameCheck = false;
-                alert("아이디가 중복되었습니다.")
+                $("#usernameMessage").text("아이디가 중복되었습니다.").css("color", "red");
             }
         }).fail((res) => {
-            alert(res.responseJSON.msg);
+            $("#usernameMessage").text(res.responseJSON.msg).css("color", "red");
         });
-
-
     }
 
 </script>
