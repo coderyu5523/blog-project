@@ -15,3 +15,19 @@ insert into board_tb(title,content,category,board_img,user_id,created_at) values
 insert into board_tb(title,content,category,board_img,user_id,created_at) values ('음식 제목9','음식 내용9','음식',null,4,now());
 insert into board_tb(title,content,category,board_img,user_id,created_at) values ('영화 제목10','영화 내용10','영화',null,5,now());
 insert into board_tb(title,content,category,board_img,user_id,created_at) values ('영화 제목11','영화 내용11','영화',null,1,now());
+
+
+insert into reply_tb(comment,user_id,board_id,created_at) values ('댓글1',1,10,now());
+insert into reply_tb(comment,user_id,board_id,created_at) values ('댓글2',2,11,now());
+insert into reply_tb(comment,user_id,board_id,created_at) values ('댓글3',3,1,now());
+insert into reply_tb(comment,user_id,board_id,created_at) values ('댓글4',4,2,now());
+insert into reply_tb(comment,user_id,board_id,created_at) values ('댓글5',5,3,now());
+insert into reply_tb(comment,user_id,board_id,created_at) values ('댓글6',1,4,now());
+insert into reply_tb(comment,user_id,board_id,created_at) values ('댓글7',2,5,now());
+insert into reply_tb(comment,user_id,board_id,created_at) values ('댓글8',3,6,now());
+insert into reply_tb(comment,user_id,board_id,created_at) values ('댓글9',4,10,now());
+insert into reply_tb(comment,user_id,board_id,created_at) values ('댓글10',5,11,now());
+insert into reply_tb(comment,user_id,board_id,created_at) values ('댓글11',1,1,now());
+insert into reply_tb(comment,user_id,board_id,created_at) values ('댓글12',2,2,now());
+insert into reply_tb(comment,user_id,board_id,created_at) values ('댓글13',3,8,now());
+insert into reply_tb(comment,user_id,board_id,created_at) values ('댓글14',4,9,now());
