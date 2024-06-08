@@ -25,9 +25,9 @@
                 <div>아이디</div>
                 <div class="mb-3">
                     <input type="text" name="username" id="username" placeholder="Enter username.." value="love"
-                           class="form-control" onchange="check()"
+                           class="form-control" onchange="usernameCheck()"
                            required>
-                    <div id="usernameMessage" class="p-text"></div> <!-- 메시지를 표시할 요소 -->
+                    <div id="usernameMessage" class="p-text"></div>
                 </div>
 
                 <div>비밀번호</div>
@@ -39,8 +39,9 @@
                 <div>비밀번호 확인</div>
                 <div class="mb-3">
                     <input type="password" name="passwordCheck" id="passwordCheck" placeholder="Enter password.." value="1234"
-                           class="form-control"
+                           class="form-control" onchange="passwordSameCheck()"
                            required>
+                    <div id="passwordMessage" class="p-text"></div>
                 </div>
 
                 <div class="mb-3">
@@ -61,10 +62,11 @@
     </div>
 </div>
 
+<!-- JavaScript 코드를 HTML 문서의 끝 부분에 위치시킵니다 -->
 <script>
     let isSameCheck = false;
 
-    function check() {
+    function usernameCheck() {
         let username = $("#username").val();
 
         $.ajax({
@@ -84,8 +86,17 @@
         });
     }
 
-</script>
+    function passwordSameCheck() {
+        let password = $("#password").val();
+        let passwordCheck = $("#passwordCheck").val();
 
+        if (password === passwordCheck) {
+            $("#passwordMessage").text("비밀번호가 일치합니다.").css("color", "green");
+        } else {
+            $("#passwordMessage").text("비밀번호가 일치하지 않습니다.").css("color", "red");
+        }
+    }
+</script>
 
 <!-- 바디 end -->
 {{>layout/footer}}
