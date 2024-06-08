@@ -2,6 +2,7 @@ package org.example.blogproject.user;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.example.blogproject._core.errors.exception.Exception400;
 import org.example.blogproject._core.errors.exception.Exception404;
 import org.example.blogproject.board.Board;
 import org.example.blogproject.board.BoardRepository;
@@ -21,11 +22,11 @@ public class UserService {
     public UserResponse.JoinDTO join(UserRequest.JoinDTO requestDTO) {
         Optional<User> userOP = userRepository.findByUsername(requestDTO.getUsername());
 
-//       if(userOP.isPresent()){
-//           if(userOP.isPresent()){
-//               throw new Exception400("중복된 유저네임입니다");
-//           }
-//       }
+        if (userOP.isPresent()) {
+            if (userOP.isPresent()) {
+                throw new Exception400("이미 존재하는 아이디입니다.");
+            }
+        }
 
         User user = userRepository.save(requestDTO.toEntity());
         return new UserResponse.JoinDTO(user);
@@ -35,7 +36,7 @@ public class UserService {
 
     @Transactional
     public SessionUser login(UserRequest.LoginDTO requestDTO) {
-        User user = userRepository.findByUsernameAndPassword(requestDTO.getUsername(), requestDTO.getPassword()).get();
+        User user = userRepository.findByUsernameAndPassword(requestDTO.getUsername(), requestDTO.getPassword()).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
         return new SessionUser(user);
     }
 
@@ -51,9 +52,9 @@ public class UserService {
     }
 
     @Transactional
-    public UserResponse.UpdateDTO userUpdate(SessionUser sessionUser,UserRequest.UpdateDTO requestDTO) {
-       User user = userRepository.findById(sessionUser.getId()).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
-       user.update(requestDTO);
-       return new UserResponse.UpdateDTO(user);
+    public UserResponse.UpdateDTO userUpdate(SessionUser sessionUser, UserRequest.UpdateDTO requestDTO) {
+        User user = userRepository.findById(sessionUser.getId()).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
+        user.update(requestDTO);
+        return new UserResponse.UpdateDTO(user);
     }
 }
