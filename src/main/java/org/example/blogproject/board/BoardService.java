@@ -76,4 +76,12 @@ public class BoardService {
         Board board = boardRepository.findById(boardId).get();
         return new BoardResponse.UpdateFormDTO(board);
     }
+
+    @Transactional
+    public BoardResponse.UpdateDTO update(Integer boardId, SessionUser sessionUser, BoardRequest.UpdateDTO requestDTO) {
+        Board board = boardRepository.findById(boardId).get();
+        board.update(requestDTO);
+        return new BoardResponse.UpdateDTO(board);
+
+    }
 }

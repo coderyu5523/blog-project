@@ -81,4 +81,11 @@ public class BoardController {
         return "board/update-form";
     }
 
+    @PostMapping("/boards/{id}/update")
+    public String update(@PathVariable Integer id, HttpServletRequest request, BoardRequest.UpdateDTO requestDTO) {
+        SessionUser sessionUser = (SessionUser) session.getAttribute("sessionUser");
+        BoardResponse.UpdateDTO responseDTO = boardService.update(id, sessionUser, requestDTO);
+        return "redirect:/boards/" + responseDTO.getId();
+    }
+
 }

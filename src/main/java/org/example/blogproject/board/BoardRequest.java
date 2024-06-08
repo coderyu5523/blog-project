@@ -27,4 +27,10 @@ public class BoardRequest {
                     .build();
         }
     }
+
+    @Data
+    public static class UpdateDTO{
+        private String title;
+        private String content;
+    }
 }

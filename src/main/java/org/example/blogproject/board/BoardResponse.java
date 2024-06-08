@@ -194,4 +194,18 @@ public class BoardResponse {
             this.category = board.getCategory();
         }
     }
+
+    @Data
+    public static class UpdateDTO {
+        private Integer id;
+        private String title;
+        private String content;
+
+        public UpdateDTO(Board board) {
+            this.id = board.getId();
+            this.title = board.getTitle();
+            this.content = board.getContent();
+        }
+    }
+
 }

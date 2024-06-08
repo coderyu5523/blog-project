@@ -16,7 +16,7 @@ import java.sql.Timestamp;
 public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id ;
+    private Integer id;
     private String title;
     private String content;
     private String category;
@@ -36,5 +36,10 @@ public class Board {
         this.boardImg = boardImg;
         this.createdAt = createdAt;
         this.user = user;
+    }
+
+    public void update(BoardRequest.UpdateDTO requestDTO) {
+        this.title = requestDTO.getTitle();
+        this.content = requestDTO.getContent();
     }
 }
