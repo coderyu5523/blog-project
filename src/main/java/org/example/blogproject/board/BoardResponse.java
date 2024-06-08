@@ -1,6 +1,7 @@
 package org.example.blogproject.board;
 
 import lombok.Data;
+import org.example.blogproject._core.utils.CategoryFormat;
 import org.example.blogproject._core.utils.DateFormat;
 import org.example.blogproject.user.User;
 
@@ -207,6 +208,16 @@ public class BoardResponse {
             this.id = board.getId();
             this.title = board.getTitle();
             this.content = board.getContent();
+        }
+    }
+    @Data
+    public static class DeleteDTO{
+        private Integer id;
+        private String formatCategory;
+
+        public DeleteDTO(Board board) {
+            this.id = board.getId();
+            this.formatCategory = CategoryFormat.translateCategory(board.getCategory());
         }
     }
 

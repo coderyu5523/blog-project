@@ -90,4 +90,12 @@ public class BoardService {
         return new BoardResponse.UpdateDTO(board);
 
     }
+
+    @Transactional
+    public BoardResponse.DeleteDTO delete(Integer boardId, SessionUser sessionUser) {
+        Board board = boardRepository.findById(boardId).get();
+        BoardResponse.DeleteDTO responseDTO = new BoardResponse.DeleteDTO(board);
+        boardRepository.delete(board);
+        return responseDTO;
+    }
 }
