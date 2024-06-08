@@ -52,6 +52,11 @@ a {
 .inline-elements form {
     margin: 0; /* 폼의 기본 마진을 제거 */
 }
+.comment-form {
+    display: none; /* 처음에는 숨김 */
+    width: 100%;
+    margin-top: 10px;
+}
 
 
 
