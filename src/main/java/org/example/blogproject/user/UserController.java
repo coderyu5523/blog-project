@@ -3,9 +3,12 @@ package org.example.blogproject.user;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.example.blogproject._core.utils.ApiUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @RequiredArgsConstructor
 @Controller
@@ -68,8 +71,15 @@ public class UserController {
     @PostMapping("/users/update")
     public String update(UserRequest.UpdateDTO requestDTO) {
         SessionUser sessionUser = (SessionUser) session.getAttribute("sessionUser");
-        userService.userUpdate(sessionUser,requestDTO);
+        userService.userUpdate(sessionUser, requestDTO);
 
         return "redirect:/user-info";
     }
+
+    @GetMapping("/api/username-same-check")
+    public @ResponseBody ApiUtil<Boolean> usernameSameCheck(@RequestParam String username) {
+        return userService.usernameCheck(username);
+    }
+
+
 }

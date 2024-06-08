@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.example.blogproject._core.errors.exception.Exception400;
 import org.example.blogproject._core.errors.exception.Exception404;
+import org.example.blogproject._core.utils.ApiUtil;
 import org.example.blogproject.board.Board;
 import org.example.blogproject.board.BoardRepository;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,16 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final BoardRepository boardRepository;
+
+    public ApiUtil<Boolean> usernameCheck(String username) {
+        Optional<User> userOP = userRepository.findByUsername(username);
+        if (userOP.isPresent()) {
+            return new ApiUtil<>(true);
+        } else {
+            return new ApiUtil<>(false);
+        }
+    }
+
 
     @Transactional
     public UserResponse.JoinDTO join(UserRequest.JoinDTO requestDTO) {
