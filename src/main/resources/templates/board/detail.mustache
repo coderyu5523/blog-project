@@ -20,7 +20,8 @@
                             <div class="box-container">
                                 <div class="d-flex justify-content-center align-items-center" id="boardImg">
                                     {{#boardImg}}
-                                        <img style="max-width: 100%; max-height: 100%; object-fit: contain;" src="/upload/{{boardImg}}" alt="">
+                                        <img style="max-width: 100%; max-height: 100%; object-fit: contain;"
+                                             src="/upload/{{boardImg}}" alt="">
                                     {{/boardImg}}
                                     {{^boardImg}}
                                         <div style="height: 150px"></div>
@@ -62,30 +63,24 @@
                 <div class="card-footer">
                     <b>댓글리스트</b>
                 </div>
+                {{#replies}}
                 <div class="list-group">
                     <!-- 댓글아이템 -->
                     <div class="list-group-item d-flex justify-content-between align-items-center">
                         <div class="d-flex">
-                            <div class="px-1 me-1 bg-primary text-white rounded">cos</div>
-                            <div>댓글 내용입니다</div>
+                            <div class="px-1 me-1 bg-primary text-white rounded">{{username}}</div>
+                            <div>{{comment}}</div>
                         </div>
-                        <form action="/reply/1/delete" method="post">
+                        <form action="/reply/{{id}}/delete" method="post">
                             <button class="btn">🗑</button>
                         </form>
                     </div>
-                    <!-- 댓글아이템 -->
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                        <div class="d-flex">
-                            <div class="px-1 me-1 bg-primary text-white rounded">ssar</div>
-                            <div>댓글 내용입니다</div>
-                        </div>
-                        <form action="/reply/1/delete" method="post">
-                            <button class="btn">🗑</button>
-                        </form>
-                    </div>
-                </div>
+                {{/replies}}
+            </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
 {{/DetailDTO}}
 

@@ -3,6 +3,7 @@ package org.example.blogproject.board;
 import lombok.Data;
 import org.example.blogproject._core.utils.CategoryFormat;
 import org.example.blogproject._core.utils.DateFormat;
+import org.example.blogproject.reply.Reply;
 import org.example.blogproject.user.User;
 
 import java.util.ArrayList;
@@ -165,8 +166,9 @@ public class BoardResponse {
         private String boardImg;
         private User user;
         private Boolean isBoardOwner;
+        private List<ReplyDTO> replies;
 
-        public DetailDTO(Board board, Boolean isBoardOwner) {
+        public DetailDTO(Board board, Boolean isBoardOwner, List<Reply> replyList) {
             this.id = board.getId();
             this.title = board.getTitle();
             this.content = board.getContent();
@@ -175,6 +177,7 @@ public class BoardResponse {
             this.boardImg = board.getBoardImg();
             this.user = board.getUser();
             this.isBoardOwner = isBoardOwner;
+            this.replies = replyList.stream().map(reply -> new ReplyDTO(reply)).toList();
         }
 
         @Data
@@ -188,6 +191,20 @@ public class BoardResponse {
             }
         }
 
+        @Data
+        class ReplyDTO {
+            private Integer id;
+            private String comment;
+            private String username;
+            private Integer boardId;
+
+            public ReplyDTO(Reply reply) {
+                this.id = reply.getId();
+                this.comment = reply.getComment();
+                this.username = reply.getUser().getUsername();
+                this.boardId = reply.getBoard().getId();
+            }
+        }
     }
 
     @Data
