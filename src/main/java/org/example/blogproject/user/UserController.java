@@ -81,7 +81,6 @@ public class UserController {
     public String update(UserRequest.UpdateDTO requestDTO) {
         SessionUser sessionUser = (SessionUser) session.getAttribute("sessionUser");
         UserResponse.UpdateDTO responseDTO = userService.userUpdate(sessionUser, requestDTO);
-
         return "redirect:/user-info";
     }
 
@@ -90,6 +89,4 @@ public class UserController {
     public @ResponseBody ApiUtil<Boolean> usernameSameCheck(@RequestParam String username) {
         return new ApiUtil<>(userService.usernameCheck(username));
     }
-
-
 }

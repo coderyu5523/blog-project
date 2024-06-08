@@ -71,11 +71,14 @@
                             <div class="px-1 me-1 bg-primary text-white rounded">{{username}}</div>
                             <div>{{comment}}</div>
                         </div>
-                        {{#isReplyOwner}}
-                            <form action="/replies/{{id}}/delete" method="post">
-                                <button class="btn">🗑</button>
-                            </form>
-                        {{/isReplyOwner}}
+                        <div class="inline-elements">
+                            {{#isReplyOwner}}
+                                <form action="/replies/{{id}}/delete" method="post">
+                                    <button class="btn">🗑</button>
+                                </form>
+                            {{/isReplyOwner}}
+                            <a class="text-body" name="" href="#">댓글달기</a>
+                        </div>
                     </div>
                 {{/replies}}
             </div>

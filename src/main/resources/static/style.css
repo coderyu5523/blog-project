@@ -44,11 +44,16 @@ a {
     margin-bottom: 30px;
 }
 
-/* KSJ 공통 end */
+.inline-elements {
+    display: flex;
+    align-items: center; /* 수직 중앙 정렬을 원할 경우 */
+}
 
-/* CYJ 공통 start */
+.inline-elements form {
+    margin: 0; /* 폼의 기본 마진을 제거 */
+}
 
-/* CYJ 공통 end */
+
 
 /* 헤더 start */
 .main-size {
