@@ -19,12 +19,12 @@ public class UserService {
     private final UserRepository userRepository;
     private final BoardRepository boardRepository;
 
-    public ApiUtil<Boolean> usernameCheck(String username) {
+    public Boolean usernameCheck(String username) {
         Optional<User> userOP = userRepository.findByUsername(username);
         if (userOP.isPresent()) {
-            return new ApiUtil<>(true);
+            return true;
         } else {
-            return new ApiUtil<>(false);
+            return false;
         }
     }
 

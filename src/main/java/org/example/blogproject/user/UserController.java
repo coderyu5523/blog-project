@@ -71,14 +71,14 @@ public class UserController {
     @PostMapping("/users/update")
     public String update(UserRequest.UpdateDTO requestDTO) {
         SessionUser sessionUser = (SessionUser) session.getAttribute("sessionUser");
-        userService.userUpdate(sessionUser, requestDTO);
+        UserResponse.UpdateDTO responseDTO = userService.userUpdate(sessionUser, requestDTO);
 
         return "redirect:/user-info";
     }
 
     @GetMapping("/api/username-same-check")
     public @ResponseBody ApiUtil<Boolean> usernameSameCheck(@RequestParam String username) {
-        return userService.usernameCheck(username);
+        return new ApiUtil<>(userService.usernameCheck(username));
     }
 
 
