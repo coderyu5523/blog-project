@@ -43,7 +43,7 @@ public class UserController {
         return "redirect:/login-form";
     }
 
-    @GetMapping("/user-info")
+    @GetMapping("/users/info")
     public String userInfo(HttpServletRequest request) {
         SessionUser sessionUser = (SessionUser) session.getAttribute("sessionUser");
         UserResponse.UserInfoDTO responseDTO = userService.userInfo(sessionUser);
