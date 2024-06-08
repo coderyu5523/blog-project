@@ -157,6 +157,7 @@ public class BoardResponse {
 
     @Data
     public static class DetailDTO {
+        private Integer id;
         private String title;
         private String content;
         private String createdAt;
@@ -166,6 +167,7 @@ public class BoardResponse {
         private Boolean isBoardOwner;
 
         public DetailDTO(Board board, Boolean isBoardOwner) {
+            this.id = board.getId();
             this.title = board.getTitle();
             this.content = board.getContent();
             this.createdAt = DateFormat.formatTimestampWithTime(board.getCreatedAt());

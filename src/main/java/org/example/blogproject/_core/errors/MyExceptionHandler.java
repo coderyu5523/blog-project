@@ -40,19 +40,19 @@ public class MyExceptionHandler {
         return "error";
     }
 
-    @ExceptionHandler(Exception500.class)
-    public String ex500(RuntimeException e, HttpServletRequest request) {
-        request.setAttribute("msg", e.getMessage());
-        request.setAttribute("status", 500);
+//    @ExceptionHandler(Exception500.class)
+//    public String ex500(RuntimeException e, HttpServletRequest request) {
+//        request.setAttribute("msg", e.getMessage());
+//        request.setAttribute("status", 500);
+//
+//        return "error";
+//    }
 
-        return "error";
-    }
-
-    @ExceptionHandler(Exception.class)
-    public String unknwonException(Exception e, HttpServletRequest request) {
-        request.setAttribute("msg", "관리자에게 문의하세요");
-        request.setAttribute("status", 500);
-
-        return "error";
-    }
+//    @ExceptionHandler(Exception.class)
+//    public String unknwonException(Exception e, HttpServletRequest request) {
+//        request.setAttribute("msg", "관리자에게 문의하세요");
+//        request.setAttribute("status", 500);
+//
+//        return "error";
+//    }
 }
