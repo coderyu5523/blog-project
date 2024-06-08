@@ -31,7 +31,7 @@ public interface BoardRepository extends JpaRepository<Board, Integer> {
     Optional<List<Board>> findByUserId(@Param("id") Integer id);
 
     @Query("select b from Board b join fetch b.user where b.title like %:keyword% or b.content like %:keyword% or b.user.username like %:keyword% order by b.id DESC")
-    List<Board> findByKeyword(@Param("keyword") String keyword);
+    Optional<List<Board>> findByKeyword(@Param("keyword") String keyword);
 
     @Query("select count(b) from Board b join b.user u where b.title like %:keyword% or b.content like %:keyword% or u.username like %:keyword%")
     Long findWithCount(@Param("keyword") String keyword);

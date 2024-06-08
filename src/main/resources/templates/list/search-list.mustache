@@ -37,6 +37,19 @@
                         <td>{{createdAt}}</td>
                     </tr>
                 {{/boards}}
+                {{^boards}}
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <div style="height: 100px"></div>
+                            <div class="d-flex justify-content-center align-items-center"><h3>검색 목록이 없습니다.</h3></div>
+                            <div style="height: 100px"></div>
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                {{/boards}}
                 </tbody>
             </table>
         </div>

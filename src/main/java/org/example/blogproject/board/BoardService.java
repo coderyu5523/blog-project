@@ -113,7 +113,7 @@ public class BoardService {
 
     // 전체 검색
     public BoardResponse.SearchDTO search(String keyword, String sort) {
-        List<Board> boardList = boardRepository.findByKeyword(keyword);
+        List<Board> boardList = boardRepository.findByKeyword(keyword).orElseThrow(() -> new Exception404("검색 결과가 없습니다."));
         boardList.sort("1".equals(sort) ? Comparator.comparing(Board::getId) : Comparator.comparing(Board::getId).reversed());
         Long count = boardRepository.findWithCount(keyword);
         return new BoardResponse.SearchDTO(boardList, count);
