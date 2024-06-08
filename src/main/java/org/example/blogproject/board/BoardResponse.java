@@ -214,10 +214,12 @@ public class BoardResponse {
     public static class DeleteDTO{
         private Integer id;
         private String formatCategory;
+        private String boardImg;
 
         public DeleteDTO(Board board) {
             this.id = board.getId();
             this.formatCategory = CategoryFormat.translateCategory(board.getCategory());
+            this.boardImg = board.getBoardImg();
         }
     }
 

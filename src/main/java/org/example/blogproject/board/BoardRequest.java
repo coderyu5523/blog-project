@@ -15,14 +15,14 @@ public class BoardRequest {
         private String content;
         private String category;
         private User user;
-//        private MultipartFile boardImg;
+        private MultipartFile boardImg;
 
-        public Board toEntity(User user){
+        public Board toEntity(User user,String backgroundImgUUID){
             return Board.builder()
                     .title(title)
                     .content(content)
                     .category(category)
-//                    .boardImg(boardImg)
+                    .boardImg(backgroundImgUUID)
                     .user(user)
                     .build();
         }
