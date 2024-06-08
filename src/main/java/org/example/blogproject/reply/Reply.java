@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.blogproject.board.Board;
+import org.example.blogproject.user.User;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
@@ -17,17 +18,20 @@ public class Reply {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String content;
+    private String comment;
     @CreationTimestamp
     private Timestamp createdAt;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
     @ManyToOne(fetch = FetchType.LAZY)
     private Board board;
 
     @Builder
-    public Reply(Integer id, String content, Timestamp createdAt, Board board) {
+    public Reply(Integer id, String comment, Timestamp createdAt, User user, Board board) {
         this.id = id;
-        this.content = content;
+        this.comment = comment;
         this.createdAt = createdAt;
+        this.user = user;
         this.board = board;
     }
 }
