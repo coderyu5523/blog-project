@@ -7,6 +7,7 @@ import org.example.blogproject.user.User;
 
 public class ReplyRequest {
 
+    // 댓글 저장
     @Data
     public static class SaveDTO {
         private Integer boardId;

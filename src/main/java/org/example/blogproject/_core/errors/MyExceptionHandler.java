@@ -47,7 +47,7 @@ public class MyExceptionHandler {
 //
 //        return "error";
 //    }
-
+//
 //    @ExceptionHandler(Exception.class)
 //    public String unknwonException(Exception e, HttpServletRequest request) {
 //        request.setAttribute("msg", "관리자에게 문의하세요");

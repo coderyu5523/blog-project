@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Controller
@@ -95,7 +96,7 @@ public class BoardController {
 
     // 게시글 수정
     @PostMapping("/boards/{id}/update")
-    public String update(@PathVariable Integer id, HttpServletRequest request, BoardRequest.UpdateDTO requestDTO) {
+    public String update(@PathVariable Integer id, BoardRequest.UpdateDTO requestDTO) {
         SessionUser sessionUser = (SessionUser) session.getAttribute("sessionUser");
         BoardResponse.UpdateDTO responseDTO = boardService.update(id, sessionUser, requestDTO);
         return "redirect:/boards/" + responseDTO.getId();
@@ -107,6 +108,15 @@ public class BoardController {
         SessionUser sessionUser = (SessionUser) session.getAttribute("sessionUser");
         BoardResponse.DeleteDTO responseDTO = boardService.delete(id, sessionUser);
         return "redirect:/boards/" + responseDTO.getFormatCategory();
+    }
+
+    // 게시글 전체 검색
+    @GetMapping("boards/search")
+    public String search(@RequestParam(value = "keyword", required = false) String keyword, @RequestParam(value = "sort", required = false) String sort, HttpServletRequest request) {
+        System.out.println("키워드 :" + keyword);
+        BoardResponse.SearchDTO responseDTO = boardService.search(keyword, sort);
+        request.setAttribute("SearchDTO", responseDTO);
+        return "list/search-list";
     }
 
 }

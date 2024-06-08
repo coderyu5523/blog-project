@@ -4,6 +4,7 @@ import lombok.Data;
 
 public class UserRequest {
 
+    // 회원가입 요청
     @Data
     public static class JoinDTO{
         private String username;
@@ -21,12 +22,15 @@ public class UserRequest {
                     .build();
         }
     }
+
+    // 로그인 요청
     @Data
     public static class LoginDTO{
         private String username;
         private String password;
     }
 
+    // 회원정보 수정 요청
     @Data
     public static class UpdateDTO{
         private String username;

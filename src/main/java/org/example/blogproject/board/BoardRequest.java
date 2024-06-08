@@ -9,6 +9,7 @@ import java.sql.Time;
 
 public class BoardRequest {
 
+    //게시글 작성 요청
     @Data
     public static class SaveDTO{
         private String title;
@@ -28,6 +29,7 @@ public class BoardRequest {
         }
     }
 
+    // 게시글 수정 요청
     @Data
     public static class UpdateDTO{
         private String title;

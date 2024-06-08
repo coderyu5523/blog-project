@@ -1,7 +1,5 @@
 package org.example.blogproject.user;
 
-
-
 import lombok.Data;
 import org.example.blogproject._core.utils.CategoryFormat;
 import org.example.blogproject._core.utils.DateFormat;
@@ -12,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserResponse {
+    // 회원가입 응답
     @Data
     public static class JoinDTO{
         private Integer id;
@@ -27,6 +26,7 @@ public class UserResponse {
         }
     }
 
+    // 로그인 응답
     @Data
     public static class LoginDTO{
         private Integer id ;
@@ -37,6 +37,8 @@ public class UserResponse {
             this.username = user.getUsername();
         }
     }
+
+    // 마이페이지
     @Data
     public static class UserInfoDTO{
         private Integer id;
@@ -73,6 +75,7 @@ public class UserResponse {
         }
     }
 
+    // 회원정보 수정 페이지
     @Data
     public static class UpdateFormDTO{
         private Integer id;
@@ -88,6 +91,7 @@ public class UserResponse {
         }
     }
 
+    // 회원정보 수정 응답
     @Data
     public static class UpdateDTO{
         private Integer id;
@@ -104,6 +108,5 @@ public class UserResponse {
             this.createdAt = user.getCreatedAt();
         }
     }
-
 
 }

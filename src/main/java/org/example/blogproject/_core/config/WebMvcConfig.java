@@ -14,7 +14,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginInterceptor())
                 .addPathPatterns("/users/**", "/boards/**")
-                .excludePathPatterns("/boards/{id:\\d+}", "/boards", "/", "/boards/sports","/boards/games","/boards/foods","/boards/movies");
+                .excludePathPatterns("/boards/{id:\\d+}", "/boards", "/", "/boards/sports","/boards/games","/boards/foods","/boards/movies","/boards/search/**");
     }
 
     @Override

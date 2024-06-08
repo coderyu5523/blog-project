@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 public class BoardResponse {
 
+    // 메인 페이지
     @Data
     public static class MainDTO {
         private List<GameDTO> gameDTOs = new ArrayList<>();
@@ -73,6 +74,7 @@ public class BoardResponse {
         }
     }
 
+    // 스포츠 페이지
     @Data
     public static class SportsListDTO {
         private Integer id;
@@ -90,6 +92,7 @@ public class BoardResponse {
         }
     }
 
+    // 게임 페이지
     @Data
     public static class GameListDTO {
         private Integer id;
@@ -107,6 +110,7 @@ public class BoardResponse {
         }
     }
 
+    // 음식 페이지
     @Data
     public static class FoodListDTO {
         private Integer id;
@@ -124,6 +128,7 @@ public class BoardResponse {
         }
     }
 
+    // 영화 페이지
     @Data
     public static class MovieListDTO {
         private Integer id;
@@ -141,6 +146,7 @@ public class BoardResponse {
         }
     }
 
+    // 게시글 저장 응답
     @Data
     public static class SaveDTO {
         private Integer id;
@@ -158,6 +164,7 @@ public class BoardResponse {
         }
     }
 
+    // 게시글 상세페이지
     @Data
     public static class DetailDTO {
         private Integer id;
@@ -213,6 +220,7 @@ public class BoardResponse {
         }
     }
 
+    // 게시글 수정 페이지
     @Data
     public static class UpdateFormDTO {
         private Integer id;
@@ -228,6 +236,7 @@ public class BoardResponse {
         }
     }
 
+    // 게시글 수정 응답
     @Data
     public static class UpdateDTO {
         private Integer id;
@@ -241,6 +250,7 @@ public class BoardResponse {
         }
     }
 
+    // 게시글 삭제 응답
     @Data
     public static class DeleteDTO {
         private Integer id;
@@ -252,4 +262,33 @@ public class BoardResponse {
         }
     }
 
+    // 전체 검색 페이지
+    @Data
+    public static class SearchDTO {
+        private List<BoardDTO> boards = new ArrayList<>();
+        public Long count;
+
+        public SearchDTO(List<Board> boardList, Long count) {
+            this.boards = boardList.stream().map(board -> new BoardDTO(board)).toList();
+            this.count = count;
+        }
+
+        @Data
+        class BoardDTO{
+            private Integer id;
+            private String title;
+            private String createdAt;
+            private String username;
+            private String boardImg;
+
+            public BoardDTO(Board board) {
+                this.id = board.getId();
+                this.title = board.getTitle();
+                this.createdAt = DateFormat.formatTimestamp(board.getCreatedAt());
+                this.username = board.getUser().getUsername();
+                this.boardImg = board.getBoardImg();
+            }
+
+        }
+    }
 }

@@ -1,0 +1,46 @@
+{{>layout/header}}
+<!-- 바디 start -->
+{{#SearchDTO}}
+    <main class="main-size">
+        <div class="div-container">
+            <br>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div class="div-recommendation mb-20">{{count}}개의 검색 결과</div>
+                <div style="display: flex; align-items: center;">
+                    <a class="text-body" name="sort" href="?sort=0">최신순</a>
+                    <span style="margin: 0 10px;">|</span>
+                    <a class="text-body" name="sort" href="?sort=1">오래된순</a>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>사진</th>
+                    <th>제목</th>
+                    <th>글쓴이</th>
+                    <th>작성일</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#boards}}
+                    <tr>
+                        <td>{{id}}</td>
+                        {{#boardImg}}
+                            <td><img src="/upload/{{boardImg}}" alt="사진" width="50" height="50"></td>
+                        {{/boardImg}}
+                        {{^boardImg}}
+                            <td><img src="/upload/no-image.jpg" alt="사진" width="50" height="50"></td>
+                        {{/boardImg}}
+                        <td><a href="/boards/{{id}}" class="text-body">{{title}}</a></td>
+                        <td><a href="/boards/{{id}}" class="text-body">{{username}}</a></td>
+                        <td>{{createdAt}}</td>
+                    </tr>
+                {{/boards}}
+                </tbody>
+            </table>
+        </div>
+    </main>
+{{/SearchDTO}}
+<!-- 바디 end -->
+{{>layout/footer}}
