@@ -47,9 +47,15 @@ public class BoardService {
     }
 
 
-    public BoardResponse.DetailDTO detail(Integer boardId) {
+    public BoardResponse.DetailDTO detail(Integer boardId, SessionUser sessionUser) {
         Board board = boardRepository.findByIdWithUser(boardId).get();
-        return new BoardResponse.DetailDTO(board);
+        Boolean isBoardOwner = false;
+        if (sessionUser != null && sessionUser.getId() == board.getUser().getId()) {
+            isBoardOwner = true;
+            return new BoardResponse.DetailDTO(board, isBoardOwner);
+
+        }
+        return new BoardResponse.DetailDTO(board, isBoardOwner);
     }
 
     public List<BoardResponse.SportsListDTO> sportsList() {

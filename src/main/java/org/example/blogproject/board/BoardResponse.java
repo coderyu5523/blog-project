@@ -157,14 +157,16 @@ public class BoardResponse {
         private String category;
         private String boardImg;
         private User user;
+        private Boolean isBoardOwner;
 
-        public DetailDTO(Board board) {
+        public DetailDTO(Board board, Boolean isBoardOwner) {
             this.title = board.getTitle();
             this.content = board.getContent();
             this.createdAt = DateFormat.formatTimestampWithTime(board.getCreatedAt());
             this.category = board.getCategory();
             this.boardImg = board.getBoardImg();
             this.user = board.getUser();
+            this.isBoardOwner = isBoardOwner;
         }
 
         @Data
