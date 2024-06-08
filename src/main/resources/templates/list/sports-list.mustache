@@ -10,7 +10,6 @@
                 <span style="margin: 0 10px;">|</span>
                 <a class="text-body" name="keyword" href="?keyword=">오래된순</a>
             </div>
-
         </div>
         <table class="table">
             <thead>
@@ -24,13 +23,18 @@
             </thead>
             <tbody>
             {{#SportsListDTO}}
-            <tr>
-                <td>{{id}}</td>
-                <td><img src="../upload/no-image.jpg" alt="사진" width="50" height="50"></td>
-                <td><a href="/boards/{{id}}" class="text-body">{{title}}</a></td>
-                <td><a href="/boards/{{id}}" class="text-body">{{username}}</a></td>
-                <td>{{createdAt}}</td>
-            </tr>
+                <tr>
+                    <td>{{id}}</td>
+                    {{#boardImg}}
+                        <td><img src="/upload/{{boardImg}}" alt="사진" width="50" height="50"></td>
+                    {{/boardImg}}
+                    {{^boardImg}}
+                        <td><img src="/upload/no-image.jpg" alt="사진" width="50" height="50"></td>
+                    {{/boardImg}}
+                    <td><a href="/boards/{{id}}" class="text-body">{{title}}</a></td>
+                    <td><a href="/boards/{{id}}" class="text-body">{{username}}</a></td>
+                    <td>{{createdAt}}</td>
+                </tr>
             {{/SportsListDTO}}
             </tbody>
         </table>
@@ -49,8 +53,6 @@
             </form>
         </div>
     </div>
-
-
 </main>
 <!-- 바디 end -->
 {{>layout/footer}}

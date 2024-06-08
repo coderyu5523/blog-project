@@ -26,7 +26,12 @@
             {{#GameListDTO}}
                 <tr>
                     <td>{{id}}</td>
-                    <td><img src="../upload/no-image.jpg" alt="사진" width="50" height="50"></td>
+                    {{#boardImg}}
+                        <td><img src="/upload/{{boardImg}}" alt="사진" width="50" height="50"></td>
+                    {{/boardImg}}
+                    {{^boardImg}}
+                        <td><img src="/upload/no-image.jpg" alt="사진" width="50" height="50"></td>
+                    {{/boardImg}}
                     <td><a href="/boards/{{id}}" class="text-body">{{title}}</a></td>
                     <td><a href="/boards/{{id}}" class="text-body">{{username}}</a></td>
                     <td>{{createdAt}}</td>

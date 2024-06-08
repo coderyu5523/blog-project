@@ -70,6 +70,73 @@ public class BoardResponse {
         }
     }
 
+    @Data
+    public static class SportsListDTO {
+        private Integer id;
+        private String title;
+        private String createdAt;
+        private String username;
+        private String boardImg;
+
+        public SportsListDTO(Board board) {
+            this.id = board.getId();
+            this.title = board.getTitle();
+            this.createdAt = DateFormat.formatTimestamp(board.getCreatedAt());
+            this.username = board.getUser().getUsername();
+            this.boardImg = board.getBoardImg();
+        }
+    }
+
+    @Data
+    public static class GameListDTO {
+        private Integer id;
+        private String title;
+        private String createdAt;
+        private String username;
+        private String boardImg;
+
+        public GameListDTO(Board board) {
+            this.id = board.getId();
+            this.title = board.getTitle();
+            this.createdAt = DateFormat.formatTimestamp(board.getCreatedAt());
+            this.username = board.getUser().getUsername();
+            this.boardImg = board.getBoardImg();
+        }
+    }
+
+    @Data
+    public static class FoodListDTO {
+        private Integer id;
+        private String title;
+        private String createdAt;
+        private String username;
+        private String boardImg;
+
+        public FoodListDTO(Board board) {
+            this.id = board.getId();
+            this.title = board.getTitle();
+            this.createdAt = DateFormat.formatTimestamp(board.getCreatedAt());
+            this.username = board.getUser().getUsername();
+            this.boardImg = board.getBoardImg();
+        }
+    }
+
+    @Data
+    public static class MovieListDTO {
+        private Integer id;
+        private String title;
+        private String createdAt;
+        private String username;
+        private String boardImg;
+
+        public MovieListDTO(Board board) {
+            this.id = board.getId();
+            this.title = board.getTitle();
+            this.createdAt = DateFormat.formatTimestamp(board.getCreatedAt());
+            this.username = board.getUser().getUsername();
+            this.boardImg = board.getBoardImg();
+        }
+    }
 
     @Data
     public static class SaveDTO {
@@ -87,68 +154,6 @@ public class BoardResponse {
             this.user = board.getUser();
         }
     }
-
-
-    @Data
-    public static class SportsListDTO {
-        private Integer id;
-        private String title;
-        private String createdAt;
-        private String username;
-
-        public SportsListDTO(Board board) {
-            this.id = board.getId();
-            this.title = board.getTitle();
-            this.createdAt = DateFormat.formatTimestamp(board.getCreatedAt());
-            this.username = board.getUser().getUsername();
-        }
-    }
-
-    @Data
-    public static class GameListDTO {
-        private Integer id;
-        private String title;
-        private String createdAt;
-        private String username;
-
-        public GameListDTO(Board board) {
-            this.id = board.getId();
-            this.title = board.getTitle();
-            this.createdAt = DateFormat.formatTimestamp(board.getCreatedAt());
-            this.username = board.getUser().getUsername();
-        }
-    }
-
-    @Data
-    public static class FoodListDTO {
-        private Integer id;
-        private String title;
-        private String createdAt;
-        private String username;
-
-        public FoodListDTO(Board board) {
-            this.id = board.getId();
-            this.title = board.getTitle();
-            this.createdAt = DateFormat.formatTimestamp(board.getCreatedAt());
-            this.username = board.getUser().getUsername();
-        }
-    }
-
-    @Data
-    public static class MovieListDTO {
-        private Integer id;
-        private String title;
-        private String createdAt;
-        private String username;
-
-        public MovieListDTO(Board board) {
-            this.id = board.getId();
-            this.title = board.getTitle();
-            this.createdAt = DateFormat.formatTimestamp(board.getCreatedAt());
-            this.username = board.getUser().getUsername();
-        }
-    }
-
 
     @Data
     public static class DetailDTO {
@@ -210,16 +215,15 @@ public class BoardResponse {
             this.content = board.getContent();
         }
     }
+
     @Data
-    public static class DeleteDTO{
+    public static class DeleteDTO {
         private Integer id;
         private String formatCategory;
-        private String boardImg;
 
         public DeleteDTO(Board board) {
             this.id = board.getId();
             this.formatCategory = CategoryFormat.translateCategory(board.getCategory());
-            this.boardImg = board.getBoardImg();
         }
     }
 

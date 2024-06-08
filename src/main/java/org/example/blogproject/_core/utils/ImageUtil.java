@@ -50,23 +50,38 @@ public class ImageUtil {
         // MultipartFile을 BufferedImage로 변환
         BufferedImage originalImage = ImageIO.read(new ByteArrayInputStream(imageFile.getBytes()));
 
-        // 이미지를 지정된 크기로 조정
-        Image resultingImage = originalImage.getScaledInstance(targetWidth, targetHeight, Image.SCALE_SMOOTH);
+        int originalWidth = originalImage.getWidth();
+        int originalHeight = originalImage.getHeight();
 
-        // 조정된 이미지를 BufferedImage로 다시 변환
-        BufferedImage outputImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_RGB);
-        outputImage.getGraphics().drawImage(resultingImage, 0, 0, null);
+        // 비율을 유지하면서 새 크기 계산
+        int newWidth = originalWidth;
+        int newHeight = originalHeight;
 
-        // 조정된 이미지를 바이트 배열로 변환하여 반환
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        ImageIO.write(outputImage, "jpg", outputStream);
+        if (originalWidth > targetWidth) {
+            newWidth = targetWidth;
+            newHeight = (newWidth * originalHeight) / originalWidth;
+        }
 
+        if (newHeight > targetHeight) {
+            newHeight = targetHeight;
+            newWidth = (newHeight * originalWidth) / originalHeight;
+        }
+
+        // 이미지를 조정된 크기로 리사이즈
+        Image resultingImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+        BufferedImage outputImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_RGB);
+        Graphics2D g2d = outputImage.createGraphics();
+        g2d.drawImage(resultingImage, 0, 0, null);
+        g2d.dispose();
+
+        // 이미지 파일로 저장
         String imgUUID = UUID.randomUUID() + "_" + img;
         Path imgPaths = Paths.get("./upload/" + imgUUID);
-        Files.write(imgPaths, outputStream.toByteArray());
+        ImageIO.write(outputImage, "jpg", Files.newOutputStream(imgPaths));
 
         return imgUUID;
     }
+
 
     /**
      * 이미지를 지정된 너비와 높이로 조정하는 메서드
