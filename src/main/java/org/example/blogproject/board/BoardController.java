@@ -4,10 +4,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.example.blogproject.user.SessionUser;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
 import java.util.List;
@@ -29,32 +31,32 @@ public class BoardController {
 
     // 게임 게시판
     @GetMapping("/boards/games")
-    public String gameList(HttpServletRequest request) {
-        List<BoardResponse.GameListDTO> responseDTO = boardService.gameList();
+    public String gameList(@RequestParam(value = "sort", required = false) String sort, HttpServletRequest request) {
+        List<BoardResponse.GameListDTO> responseDTO = boardService.gameList(sort);
         request.setAttribute("GameListDTO", responseDTO);
         return "list/games-list";
     }
 
     // 스포츠 게시판
     @GetMapping("/boards/sports")
-    public String sportsList(HttpServletRequest request) {
-        List<BoardResponse.SportsListDTO> responseDTO = boardService.sportsList();
+    public String sportsList(@RequestParam(value = "sort", required = false) String sort, HttpServletRequest request) {
+        List<BoardResponse.SportsListDTO> responseDTO = boardService.sportsList(sort);
         request.setAttribute("SportsListDTO", responseDTO);
         return "list/sports-list";
     }
 
     // 영화 게시판
     @GetMapping("/boards/movies")
-    public String moviesList(HttpServletRequest request) {
-        List<BoardResponse.MovieListDTO> responseDTO = boardService.movieList();
+    public String moviesList(@RequestParam(value = "sort", required = false) String sort, HttpServletRequest request) {
+        List<BoardResponse.MovieListDTO> responseDTO = boardService.movieList(sort);
         request.setAttribute("MovieListDTO", responseDTO);
         return "list/movies-list";
     }
 
     // 음식 게시판
     @GetMapping("/boards/foods")
-    public String foodsList(HttpServletRequest request) {
-        List<BoardResponse.FoodListDTO> responseDTO = boardService.foodList();
+    public String foodsList(@RequestParam(value = "sort", required = false) String sort, HttpServletRequest request) {
+        List<BoardResponse.FoodListDTO> responseDTO = boardService.foodList(sort);
         request.setAttribute("FoodListDTO", responseDTO);
         return "list/foods-list";
     }
@@ -104,7 +106,7 @@ public class BoardController {
     public String delete(@PathVariable Integer id) {
         SessionUser sessionUser = (SessionUser) session.getAttribute("sessionUser");
         BoardResponse.DeleteDTO responseDTO = boardService.delete(id, sessionUser);
-        return "redirect:/boards/"+responseDTO.getFormatCategory();
+        return "redirect:/boards/" + responseDTO.getFormatCategory();
     }
 
 }
