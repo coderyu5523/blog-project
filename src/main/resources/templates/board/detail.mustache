@@ -66,14 +66,16 @@
                 {{#replies}}
                 <div class="list-group">
                     <!-- 댓글아이템 -->
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                    <div class="list-group-item d-flex justify-content-between align-items-center" style="height: 50px;">
                         <div class="d-flex">
                             <div class="px-1 me-1 bg-primary text-white rounded">{{username}}</div>
                             <div>{{comment}}</div>
                         </div>
-                        <form action="/replies/{{id}}/delete" method="post">
-                            <button class="btn">🗑</button>
-                        </form>
+                        {{#isReplyOwner}}
+                            <form action="/replies/{{id}}/delete" method="post">
+                                <button class="btn">🗑</button>
+                            </form>
+                        {{/isReplyOwner}}
                     </div>
                 {{/replies}}
             </div>

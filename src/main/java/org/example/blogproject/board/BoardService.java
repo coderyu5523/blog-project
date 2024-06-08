@@ -55,8 +55,8 @@ public class BoardService {
     public BoardResponse.DetailDTO detail(Integer boardId, SessionUser sessionUser) {
         Board board = boardRepository.findByIdWithUser(boardId).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
         List<Reply> replyList = replyRepository.findByBoardId(board.getId()).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
-        boolean isBoardOwner = sessionUser != null && sessionUser.getId().equals(board.getUser().getId());
-        return new BoardResponse.DetailDTO(board, isBoardOwner,replyList);
+        Boolean isBoardOwner = sessionUser != null && sessionUser.getId().equals(board.getUser().getId());
+        return new BoardResponse.DetailDTO(board, isBoardOwner, replyList,sessionUser);
     }
 
     // 스포츠 게시판

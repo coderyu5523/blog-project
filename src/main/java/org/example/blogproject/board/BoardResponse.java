@@ -4,10 +4,12 @@ import lombok.Data;
 import org.example.blogproject._core.utils.CategoryFormat;
 import org.example.blogproject._core.utils.DateFormat;
 import org.example.blogproject.reply.Reply;
+import org.example.blogproject.user.SessionUser;
 import org.example.blogproject.user.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BoardResponse {
 
@@ -168,7 +170,7 @@ public class BoardResponse {
         private Boolean isBoardOwner;
         private List<ReplyDTO> replies;
 
-        public DetailDTO(Board board, Boolean isBoardOwner, List<Reply> replyList) {
+        public DetailDTO(Board board, Boolean isBoardOwner, List<Reply> replyList, SessionUser sessionUser) {
             this.id = board.getId();
             this.title = board.getTitle();
             this.content = board.getContent();
@@ -177,7 +179,9 @@ public class BoardResponse {
             this.boardImg = board.getBoardImg();
             this.user = board.getUser();
             this.isBoardOwner = isBoardOwner;
-            this.replies = replyList.stream().map(reply -> new ReplyDTO(reply)).toList();
+            this.replies = replyList.stream()
+                    .map(reply -> new ReplyDTO(reply, sessionUser != null && sessionUser.getId().equals(reply.getUser().getId())))
+                    .collect(Collectors.toList());
         }
 
         @Data
@@ -197,12 +201,14 @@ public class BoardResponse {
             private String comment;
             private String username;
             private Integer boardId;
+            private Boolean isReplyOwner;
 
-            public ReplyDTO(Reply reply) {
+            public ReplyDTO(Reply reply, Boolean isReplyOwner) {
                 this.id = reply.getId();
                 this.comment = reply.getComment();
                 this.username = reply.getUser().getUsername();
                 this.boardId = reply.getBoard().getId();
+                this.isReplyOwner = isReplyOwner;
             }
         }
     }
