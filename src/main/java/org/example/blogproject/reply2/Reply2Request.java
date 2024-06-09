@@ -10,17 +10,14 @@ public class Reply2Request {
     @Data
     public static class SaveDTO {
         private Integer replyId;
-//        private Integer boardId;
         private String comment;
 
         public Reply2 toEntity(Reply reply,  User sessionUser){
             return Reply2.builder()
                     .comment(comment)
-//                    .board(board)
                     .reply(reply)
                     .user(sessionUser)
                     .build();
-
         }
     }
 }

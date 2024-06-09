@@ -6,14 +6,18 @@ import org.example.blogproject._core.errors.exception.Exception404;
 import org.example.blogproject._core.utils.ImageUtil;
 import org.example.blogproject.reply.Reply;
 import org.example.blogproject.reply.ReplyRepository;
+import org.example.blogproject.reply2.Reply2;
+import org.example.blogproject.reply2.Reply2Repository;
 import org.example.blogproject.user.SessionUser;
 import org.example.blogproject.user.User;
 import org.example.blogproject.user.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -22,6 +26,7 @@ public class BoardService {
     private final BoardRepository boardRepository;
     private final UserRepository userRepository;
     private final ReplyRepository replyRepository;
+    private final Reply2Repository reply2Repository;
 
     // 게시글 작성
     @Transactional
@@ -56,8 +61,17 @@ public class BoardService {
     public BoardResponse.DetailDTO detail(Integer boardId, SessionUser sessionUser) {
         Board board = boardRepository.findByIdWithUser(boardId).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
         List<Reply> replyList = replyRepository.findByBoardId(board.getId()).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
+
+        List<BoardResponse.DetailDTO.ReplyDTO> replyDTOList = new ArrayList<>();
+
+        for (Reply reply : replyList) {
+            List<Reply2> reply2List = reply2Repository.findByReplyId(reply.getId()).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
+            List<BoardResponse.DetailDTO.Reply2DTO> reply2DTOList = reply2List.stream().map(reply2 -> new BoardResponse.DetailDTO.Reply2DTO(reply2,sessionUser != null && sessionUser.getId().equals(reply2.getUser().getId()))).toList();
+            replyDTOList.add(new BoardResponse.DetailDTO.ReplyDTO(reply, sessionUser != null && sessionUser.getId().equals(reply.getUser().getId()), reply2DTOList));
+        }
+
         Boolean isBoardOwner = sessionUser != null && sessionUser.getId().equals(board.getUser().getId());
-        return new BoardResponse.DetailDTO(board, isBoardOwner, replyList, sessionUser);
+        return new BoardResponse.DetailDTO(board, isBoardOwner, replyDTOList, sessionUser);
     }
 
     // 스포츠 게시판

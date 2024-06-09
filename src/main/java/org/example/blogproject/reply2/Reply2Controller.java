@@ -16,8 +16,8 @@ public class Reply2Controller {
     @PostMapping("/replies2/save")
     public String save(Reply2Request.SaveDTO requestDTO) {
         SessionUser sessionUser = (SessionUser) session.getAttribute("sessionUser");
-        reply2Service.save(requestDTO,sessionUser);
-
-        return null;
+        Reply2Response.SaveDTO responseDTO = reply2Service.save(requestDTO, sessionUser);
+        return "redirect:/boards/" + responseDTO.getBoardId();
     }
+
 }

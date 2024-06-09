@@ -4,6 +4,7 @@ import lombok.Data;
 import org.example.blogproject._core.utils.CategoryFormat;
 import org.example.blogproject._core.utils.DateFormat;
 import org.example.blogproject.reply.Reply;
+import org.example.blogproject.reply2.Reply2;
 import org.example.blogproject.user.SessionUser;
 import org.example.blogproject.user.User;
 
@@ -177,7 +178,7 @@ public class BoardResponse {
         private Boolean isBoardOwner;
         private List<ReplyDTO> replies;
 
-        public DetailDTO(Board board, Boolean isBoardOwner, List<Reply> replyList, SessionUser sessionUser) {
+        public DetailDTO(Board board, Boolean isBoardOwner, List<ReplyDTO> replies, SessionUser sessionUser) {
             this.id = board.getId();
             this.title = board.getTitle();
             this.content = board.getContent();
@@ -186,13 +187,11 @@ public class BoardResponse {
             this.boardImg = board.getBoardImg();
             this.user = board.getUser();
             this.isBoardOwner = isBoardOwner;
-            this.replies = replyList.stream()
-                    .map(reply -> new ReplyDTO(reply, sessionUser != null && sessionUser.getId().equals(reply.getUser().getId())))
-                    .collect(Collectors.toList());
+            this.replies = replies;
         }
 
         @Data
-        class UserDTO {
+        public static class UserDTO {
             private Integer id;
             private String username;
 
@@ -203,22 +202,42 @@ public class BoardResponse {
         }
 
         @Data
-        class ReplyDTO {
+        public static class ReplyDTO {
             private Integer id;
             private String comment;
             private String username;
             private Integer boardId;
             private Boolean isReplyOwner;
+            private List<Reply2DTO> reply2List;
 
-            public ReplyDTO(Reply reply, Boolean isReplyOwner) {
+            public ReplyDTO(Reply reply, Boolean isReplyOwner, List<Reply2DTO> reply2List) {
                 this.id = reply.getId();
                 this.comment = reply.getComment();
                 this.username = reply.getUser().getUsername();
                 this.boardId = reply.getBoard().getId();
                 this.isReplyOwner = isReplyOwner;
+                this.reply2List = reply2List;
+            }
+        }
+
+        @Data
+        public static class Reply2DTO {
+            private Integer reply2Id;
+            private String comment;
+            private String username;
+            private Integer replyId;
+            private Boolean isReply2Owner;
+
+            public Reply2DTO(Reply2 reply2, Boolean isReply2Owner) {
+                this.reply2Id = reply2.getId();
+                this.comment = reply2.getComment();
+                this.username = reply2.getUser().getUsername();
+                this.replyId = reply2.getReply().getId();
+                this.isReply2Owner = isReply2Owner;
             }
         }
     }
+
 
     // 게시글 수정 페이지
     @Data
@@ -274,7 +293,7 @@ public class BoardResponse {
         }
 
         @Data
-        class BoardDTO{
+        class BoardDTO {
             private Integer id;
             private String title;
             private String createdAt;

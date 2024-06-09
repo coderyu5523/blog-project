@@ -31,3 +31,17 @@ insert into reply_tb(comment,user_id,board_id,created_at) values ('댓글11',1,1
 insert into reply_tb(comment,user_id,board_id,created_at) values ('댓글12',2,2,now());
 insert into reply_tb(comment,user_id,board_id,created_at) values ('댓글13',3,8,now());
 insert into reply_tb(comment,user_id,board_id,created_at) values ('댓글14',4,9,now());
+
+insert into reply2_tb(comment,user_id,reply_id,created_at) values ('대댓글1',5,14,now());
+insert into reply2_tb(comment,user_id,reply_id,created_at) values ('대댓글2',4,13,now());
+insert into reply2_tb(comment,user_id,reply_id,created_at) values ('대댓글3',3,12,now());
+insert into reply2_tb(comment,user_id,reply_id,created_at) values ('대댓글4',2,11,now());
+insert into reply2_tb(comment,user_id,reply_id,created_at) values ('대댓글5',1,10,now());
+insert into reply2_tb(comment,user_id,reply_id,created_at) values ('대댓글6',5,9,now());
+insert into reply2_tb(comment,user_id,reply_id,created_at) values ('대댓글7',4,8,now());
+insert into reply2_tb(comment,user_id,reply_id,created_at) values ('대댓글8',3,7,now());
+insert into reply2_tb(comment,user_id,reply_id,created_at) values ('대댓글9',2,6,now());
+insert into reply2_tb(comment,user_id,reply_id,created_at) values ('대댓글10',1,5,now());
+insert into reply2_tb(comment,user_id,reply_id,created_at) values ('대댓글11',3,4,now());
+insert into reply2_tb(comment,user_id,reply_id,created_at) values ('대댓글12',5,3,now());
+insert into reply2_tb(comment,user_id,reply_id,created_at) values ('대댓글13',4,2,now());

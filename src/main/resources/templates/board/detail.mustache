@@ -64,46 +64,50 @@
                     <b>댓글리스트</b>
                 </div>
                 {{#replies}}
-                    <div class="list-group">
-                        <!-- 댓글아이템 -->
-                        <div class="list-group-item d-flex justify-content-between align-items-center"
-                             style="height: 50px;" data-id="{{id}}">
-                            <div class="d-flex">
-                                <div class="px-1 me-1 bg-primary text-white rounded">{{username}}</div>
-                                <div>{{comment}}</div>
-                            </div>
+                <div class="list-group">
+                    <!-- 댓글아이템 -->
+                    <div class="list-group-item d-flex justify-content-between align-items-center"
+                         style="height: 50px;" data-id="{{id}}">
+                        <div class="d-flex">
+                            <div class="px-1 me-1 bg-primary text-white rounded">{{username}}</div>
+                            <div>{{comment}}</div>
+                        </div>
+                        {{#isReplyOwner}}
                             <div class="inline-elements">
-                                {{#isReplyOwner}}
-                                    <form action="/replies/{{id}}/delete" method="post">
-                                        <button class="btn">🗑</button>
-                                    </form>
-                                {{/isReplyOwner}}
+                                <form action="/replies/{{id}}/delete" method="post">
+                                    <button class="btn">🗑</button>
+                                </form>
                                 <a class="text-body add-reply" href="#">댓글달기</a>
                             </div>
-                        </div>
-                        <div class="comment-form">
-                            <!-- 댓글 입력 폼이 동적으로 추가될 영역 -->
-                        </div>
+                        {{/isReplyOwner}}
+                    </div>
+                    <div class="comment-form">
+                        <!-- 댓글 입력 폼이 동적으로 추가될 영역 -->
+                    </div>
+                    {{#reply2List}}
                     <div class="list-group">
                         <!-- 대댓글  -->
                         <div class="list-group-item d-flex justify-content-between align-items-center"
                              style="height: 50px;" data-id="{{id}}">
                             <div class="d-flex">
                                 <div style="margin-right: 5px;">└</div>
-                                <div class="px-1 me-1 bg-primary text-white rounded">cos</div>
-                                <div>대댓글</div>
+                                <div class="px-1 me-1 bg-primary text-white rounded">{{username}}</div>
+                                <div>{{comment}}</div>
                             </div>
-                            <div class="inline-elements">
-                                    <form action="/replies/{{id}}/delete" method="post">
+                            {{#isReply2Owner}}
+                                <div class="inline-elements">
+                                    <form action="/replies/{{reply2Id}}/delete" method="post">
                                         <button class="btn">🗑</button>
                                     </form>
-                            </div>
-                    </div>
+                                </div>
+                            {{/isReply2Owner}}
+                        </div>
+                    {{/reply2List}}
                 {{/replies}}
             </div>
+            </div>
+            </div>
         </div>
-    </div>
-    </div>
     </div>
     </div>
     </div>
