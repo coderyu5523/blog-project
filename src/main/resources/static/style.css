@@ -1,6 +1,4 @@
-/*   배경 부분 start  */
 
-/* 모든 요소의 마진 패딩값 초기화 */
 
 * {
     margin: 0px;
@@ -12,7 +10,6 @@
      */
 }
 
-/* RYU 공통 start */
 a {
     text-decoration: none !important;
     color: black;
@@ -29,9 +26,6 @@ a {
 }
 
 
-/* RYU 공통 end */
-
-/* KSJ 공통 start */
 .body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -86,7 +80,7 @@ a {
     grid-column-gap: 10px;
     color: black;
     font-weight: 800;
-
+    padding-right: 150px;
 
 }
 
@@ -129,15 +123,6 @@ a {
     color: grey;
 }
 
-.div-recommendation-text-2 {
-    font-size: 18px;
-    font-weight: 600;
-}
-
-.div-jop-more {
-    display: flex;
-    justify-content: space-between;
-}
 
 
 .fixed-height {
@@ -147,12 +132,9 @@ a {
 
 
 
-
-
 .page-link {
     color: black !important;
 }
-
 
 
 .div-body {
@@ -160,7 +142,6 @@ a {
     margin: 0 auto;
     padding: 20px;
 }
-
 
  .div-profile {
      height: 200px; /* 원하는 높이로 설정 */
@@ -202,31 +183,9 @@ a {
 }
 
 
-
-.input-width30 {
-    width: 30%;
-}
-
-.input-width15 {
-    width: 15%;
-}
-
-.input-width10 {
-    width: 10%;
-}
-
-.input-width5 {
-    width: 5%;
-}
-
-
-
 .button-post-cancel {
     text-align: center;
 }
-
-
-
 
 
 th {
