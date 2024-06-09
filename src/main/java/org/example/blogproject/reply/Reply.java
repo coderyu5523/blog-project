@@ -5,10 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.blogproject.board.Board;
+import org.example.blogproject.reply2.Reply2;
 import org.example.blogproject.user.User;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -25,6 +28,9 @@ public class Reply {
     private User user;
     @ManyToOne(fetch = FetchType.LAZY)
     private Board board;
+
+    @OneToMany(mappedBy = "reply", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE) // Entity 객체의 변수명 == FK의 주인
+    private List<Reply2> replies2 = new ArrayList<>();
 
     @Builder
     public Reply(Integer id, String comment, Timestamp createdAt, User user, Board board) {
