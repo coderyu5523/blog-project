@@ -22,4 +22,15 @@ public class Reply2Response {
             this.boardId = reply2.getReply().getBoard().getId();
         }
     }
+
+    @Data
+    public static class DeleteDTO {
+        private Integer id;
+        private Integer boardId;
+
+        public DeleteDTO(Reply2 reply2) {
+            this.id = reply2.getId();
+            this.boardId = reply2.getReply().getBoard().getId();
+        }
+    }
 }
