@@ -104,10 +104,10 @@
 
             if (parent.is(':hidden')) {
                 parent.html(`
-                        <form action="/replies/save" method="post" class="w-100 mt-2">
+                        <form action="/replies2/save" method="post" class="w-100 mt-2">
                             <textarea class="form-control" rows="2" name="comment"></textarea>
                             <div class="d-flex justify-content-end mt-1">
-                                <input type="hidden" name="parentId" value="${$(this).closest('.list-group-item').data('id')}">
+                                <input type="hidden" name="replyId" value="${$(this).closest('.list-group-item').data('id')}">
                                 <button type="submit" class="btn btn-outline-primary">댓글등록</button>
                             </div>
                         </form>`);
