@@ -6,10 +6,11 @@ import org.example.blogproject._core.errors.exception.Exception400;
 import org.example.blogproject._core.errors.exception.Exception404;
 import org.example.blogproject.board.Board;
 import org.example.blogproject.board.BoardRepository;
+import org.example.blogproject.reply.Reply;
+import org.example.blogproject.reply.ReplyRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -17,6 +18,7 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final BoardRepository boardRepository;
+    private final ReplyRepository replyRepository;
 
     // 아이디 중복체크
     public Boolean usernameCheck(String username) {
@@ -26,7 +28,8 @@ public class UserService {
     // 회원가입
     @Transactional
     public UserResponse.JoinDTO join(UserRequest.JoinDTO requestDTO) {
-        if (userRepository.findByUsername(requestDTO.getUsername()).isPresent()) throw new Exception400("이미 존재하는 아이디입니다.");
+        if (userRepository.findByUsername(requestDTO.getUsername()).isPresent())
+            throw new Exception400("이미 존재하는 아이디입니다.");
         User user = userRepository.save(requestDTO.toEntity());
         return new UserResponse.JoinDTO(user);
     }
@@ -43,7 +46,8 @@ public class UserService {
     public UserResponse.UserInfoDTO userInfo(SessionUser sessionUser) {
         User user = userRepository.findById(sessionUser.getId()).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
         List<Board> boardList = boardRepository.findByUserId(sessionUser.getId()).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
-        return new UserResponse.UserInfoDTO(user, boardList);
+        List<Reply> replyList = replyRepository.findByUserId(sessionUser.getId()).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
+        return new UserResponse.UserInfoDTO(user, boardList,replyList);
     }
 
     // 회원정보 수정 페이지
