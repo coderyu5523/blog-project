@@ -1,11 +1,8 @@
 package org.example.blogproject.board;
 
 import lombok.Data;
-import org.example.blogproject.user.SessionUser;
 import org.example.blogproject.user.User;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.sql.Time;
 
 public class BoardRequest {
 

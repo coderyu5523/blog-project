@@ -26,9 +26,7 @@ public class UserService {
     // 회원가입
     @Transactional
     public UserResponse.JoinDTO join(UserRequest.JoinDTO requestDTO) {
-        if (userRepository.findByUsername(requestDTO.getUsername()).isPresent()) {
-            throw new Exception400("이미 존재하는 아이디입니다.");
-        }
+        if (userRepository.findByUsername(requestDTO.getUsername()).isPresent()) throw new Exception400("이미 존재하는 아이디입니다.");
         User user = userRepository.save(requestDTO.toEntity());
         return new UserResponse.JoinDTO(user);
     }

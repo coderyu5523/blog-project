@@ -1,6 +1,5 @@
 package org.example.blogproject.reply;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Data;
 
 public class ReplyResponse {
