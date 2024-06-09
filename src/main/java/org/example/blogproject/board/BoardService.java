@@ -61,31 +61,56 @@ public class BoardService {
     }
 
     // 스포츠 게시판
-    public List<BoardResponse.SportsListDTO> sportsList(String sort) {
-        List<Board> boardList = boardRepository.findBySprots().orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
-        boardList.sort("1".equals(sort) ? Comparator.comparing(Board::getId) : Comparator.comparing(Board::getId).reversed());
-        return boardList.stream().map(board -> new BoardResponse.SportsListDTO(board)).toList();
+    public List<BoardResponse.SportsListDTO> sportsList(String sort, String keyword) {
+        if (keyword != null) {
+            List<Board> boardList = boardRepository.findBySprotsWithKeyword(keyword).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
+            boardList.sort("1".equals(sort) ? Comparator.comparing(Board::getId) : Comparator.comparing(Board::getId).reversed());
+            return boardList.stream().map(board -> new BoardResponse.SportsListDTO(board)).toList();
+        } else {
+            List<Board> boardList = boardRepository.findBySprots().orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
+            boardList.sort("1".equals(sort) ? Comparator.comparing(Board::getId) : Comparator.comparing(Board::getId).reversed());
+            return boardList.stream().map(board -> new BoardResponse.SportsListDTO(board)).toList();
+        }
     }
 
     // 게임 게시판
-    public List<BoardResponse.GameListDTO> gameList(String sort) {
-        List<Board> boardList = boardRepository.findByGame().orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
-        boardList.sort("1".equals(sort) ? Comparator.comparing(Board::getId) : Comparator.comparing(Board::getId).reversed());
-        return boardList.stream().map(board -> new BoardResponse.GameListDTO(board)).toList();
+    public List<BoardResponse.GameListDTO> gameList(String sort, String keyword) {
+        if (keyword != null) {
+            List<Board> boardList = boardRepository.findByGameWithKeyword(keyword).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
+            boardList.sort("1".equals(sort) ? Comparator.comparing(Board::getId) : Comparator.comparing(Board::getId).reversed());
+            return boardList.stream().map(board -> new BoardResponse.GameListDTO(board)).toList();
+        } else {
+            List<Board> boardList = boardRepository.findByGame().orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
+            boardList.sort("1".equals(sort) ? Comparator.comparing(Board::getId) : Comparator.comparing(Board::getId).reversed());
+            return boardList.stream().map(board -> new BoardResponse.GameListDTO(board)).toList();
+        }
     }
 
     // 영화 게시판
-    public List<BoardResponse.MovieListDTO> movieList(String sort) {
-        List<Board> boardList = boardRepository.findByMovie().orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
-        boardList.sort("1".equals(sort) ? Comparator.comparing(Board::getId) : Comparator.comparing(Board::getId).reversed());
-        return boardList.stream().map(board -> new BoardResponse.MovieListDTO(board)).toList();
+    public List<BoardResponse.MovieListDTO> movieList(String sort, String keyword) {
+        if (keyword != null) {
+            List<Board> boardList = boardRepository.findByMovieWithKeyword(keyword).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
+            boardList.sort("1".equals(sort) ? Comparator.comparing(Board::getId) : Comparator.comparing(Board::getId).reversed());
+            return boardList.stream().map(board -> new BoardResponse.MovieListDTO(board)).toList();
+        } else {
+            List<Board> boardList = boardRepository.findByMovie().orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
+            boardList.sort("1".equals(sort) ? Comparator.comparing(Board::getId) : Comparator.comparing(Board::getId).reversed());
+            return boardList.stream().map(board -> new BoardResponse.MovieListDTO(board)).toList();
+        }
+
     }
 
     // 음식 게시판
-    public List<BoardResponse.FoodListDTO> foodList(String sort) {
-        List<Board> boardList = boardRepository.findByFood().orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
-        boardList.sort("1".equals(sort) ? Comparator.comparing(Board::getId) : Comparator.comparing(Board::getId).reversed());
-        return boardList.stream().map(board -> new BoardResponse.FoodListDTO(board)).toList();
+    public List<BoardResponse.FoodListDTO> foodList(String sort, String keyword) {
+        if (keyword != null) {
+            List<Board> boardList = boardRepository.findByFoodWithKeyword(keyword).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
+            boardList.sort("1".equals(sort) ? Comparator.comparing(Board::getId) : Comparator.comparing(Board::getId).reversed());
+            return boardList.stream().map(board -> new BoardResponse.FoodListDTO(board)).toList();
+        } else {
+            List<Board> boardList = boardRepository.findByFood().orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
+            boardList.sort("1".equals(sort) ? Comparator.comparing(Board::getId) : Comparator.comparing(Board::getId).reversed());
+            return boardList.stream().map(board -> new BoardResponse.FoodListDTO(board)).toList();
+        }
     }
 
     // 게시글 수정 페이지

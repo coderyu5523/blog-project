@@ -32,32 +32,32 @@ public class BoardController {
 
     // 게임 게시판
     @GetMapping("/boards/games")
-    public String gameList(@RequestParam(value = "sort", required = false) String sort, HttpServletRequest request) {
-        List<BoardResponse.GameListDTO> responseDTO = boardService.gameList(sort);
+    public String gameList(@RequestParam(value = "sort", required = false) String sort, @RequestParam(value = "keyword", required = false) String keyword, HttpServletRequest request) {
+        List<BoardResponse.GameListDTO> responseDTO = boardService.gameList(sort, keyword);
         request.setAttribute("GameListDTO", responseDTO);
         return "list/games-list";
     }
 
     // 스포츠 게시판
     @GetMapping("/boards/sports")
-    public String sportsList(@RequestParam(value = "sort", required = false) String sort, HttpServletRequest request) {
-        List<BoardResponse.SportsListDTO> responseDTO = boardService.sportsList(sort);
+    public String sportsList(@RequestParam(value = "sort", required = false) String sort, @RequestParam(value = "keyword", required = false) String keyword, HttpServletRequest request) {
+        List<BoardResponse.SportsListDTO> responseDTO = boardService.sportsList(sort, keyword);
         request.setAttribute("SportsListDTO", responseDTO);
         return "list/sports-list";
     }
 
     // 영화 게시판
     @GetMapping("/boards/movies")
-    public String moviesList(@RequestParam(value = "sort", required = false) String sort, HttpServletRequest request) {
-        List<BoardResponse.MovieListDTO> responseDTO = boardService.movieList(sort);
+    public String moviesList(@RequestParam(value = "sort", required = false) String sort, @RequestParam(value = "keyword", required = false) String keyword, HttpServletRequest request) {
+        List<BoardResponse.MovieListDTO> responseDTO = boardService.movieList(sort, keyword);
         request.setAttribute("MovieListDTO", responseDTO);
         return "list/movies-list";
     }
 
     // 음식 게시판
     @GetMapping("/boards/foods")
-    public String foodsList(@RequestParam(value = "sort", required = false) String sort, HttpServletRequest request) {
-        List<BoardResponse.FoodListDTO> responseDTO = boardService.foodList(sort);
+    public String foodsList(@RequestParam(value = "sort", required = false) String sort, @RequestParam(value = "keyword", required = false) String keyword, HttpServletRequest request) {
+        List<BoardResponse.FoodListDTO> responseDTO = boardService.foodList(sort, keyword);
         request.setAttribute("FoodListDTO", responseDTO);
         return "list/foods-list";
     }
