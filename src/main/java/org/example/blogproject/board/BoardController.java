@@ -34,8 +34,8 @@ public class BoardController {
 
     // 게임 게시판
     @GetMapping("/boards/games")
-    public String gameList(@RequestParam(value = "sort", required = false) String sort, @RequestParam(value = "keyword", required = false) String keyword, HttpServletRequest request,@PageableDefault(size = 5,sort = "id",direction = Sort.Direction.DESC) Pageable pageable) {
-        Page<BoardResponse.GameListDTO> responseDTO = boardService.gameList(sort, keyword,pageable);
+    public String gameList(@RequestParam(value = "sort", required = false) String sort, @RequestParam(value = "keyword", required = false) String keyword, HttpServletRequest request, @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+        Page<BoardResponse.GameListDTO> responseDTO = boardService.gameList(sort, keyword, pageable);
         request.setAttribute("GameListDTO", responseDTO);
         return "list/games-list";
     }

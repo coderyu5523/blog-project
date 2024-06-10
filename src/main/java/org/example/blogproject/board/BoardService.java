@@ -12,7 +12,9 @@ import org.example.blogproject.user.SessionUser;
 import org.example.blogproject.user.User;
 import org.example.blogproject.user.UserRepository;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -68,7 +70,7 @@ public class BoardService {
 
         for (Reply reply : replyList) {
             List<Reply2> reply2List = reply2Repository.findByReplyId(reply.getId()).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
-            List<BoardResponse.DetailDTO.Reply2DTO> reply2DTOList = reply2List.stream().map(reply2 -> new BoardResponse.DetailDTO.Reply2DTO(reply2,sessionUser != null && sessionUser.getId().equals(reply2.getUser().getId()))).toList();
+            List<BoardResponse.DetailDTO.Reply2DTO> reply2DTOList = reply2List.stream().map(reply2 -> new BoardResponse.DetailDTO.Reply2DTO(reply2, sessionUser != null && sessionUser.getId().equals(reply2.getUser().getId()))).toList();
             replyDTOList.add(new BoardResponse.DetailDTO.ReplyDTO(reply, sessionUser != null && sessionUser.getId().equals(reply.getUser().getId()), reply2DTOList));
         }
 
@@ -91,15 +93,18 @@ public class BoardService {
 
     // 게임 게시판
     public Page<BoardResponse.GameListDTO> gameList(String sort, String keyword, Pageable pageable) {
-            if (keyword != null) {
-                Page<Board> boardList = boardRepository.findByGameWithKeyword(keyword,pageable).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
-//            boardList.sort("1".equals(sort) ? Comparator.comparing(Board::getId) : Comparator.comparing(Board::getId).reversed());
-                return boardList.map(board -> new BoardResponse.GameListDTO(board));
-            } else {
-                Page<Board> boardList = boardRepository.findByGame(pageable).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
-//            boardList.sort("1".equals(sort) ? Comparator.comparing(Board::getId) : Comparator.comparing(Board::getId).reversed());
-                return boardList.map(board -> new BoardResponse.GameListDTO(board));
-            }
+        // Determine sort direction
+        Sort.Direction direction = "1".equals(sort) ? Sort.Direction.ASC : Sort.Direction.DESC;
+        // Create new pageable with sort direction
+        Pageable sortedPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(direction, "id"));
+
+        if (keyword != null) {
+            Page<Board> boardList = boardRepository.findByGameWithKeyword(keyword, sortedPageable).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
+            return boardList.map(board -> new BoardResponse.GameListDTO(board));
+        } else {
+            Page<Board> boardList = boardRepository.findByGame(sortedPageable).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
+            return boardList.map(board -> new BoardResponse.GameListDTO(board));
+        }
     }
 
     // 영화 게시판
