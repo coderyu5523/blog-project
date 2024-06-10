@@ -79,7 +79,7 @@ public class BoardService {
     }
 
     // 스포츠 게시판
-    public Page<BoardResponse.SportsListDTO> sportsList(String sort, String keyword,Pageable pageable) {
+    public Page<BoardResponse.SportsListDTO> sportsList(String sort, String keyword, Pageable pageable) {
         Sort.Direction direction = "1".equals(sort) ? Sort.Direction.ASC : Sort.Direction.DESC;
         Pageable sortedPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(direction, "id"));
 
@@ -93,21 +93,27 @@ public class BoardService {
     }
 
     // 게임 게시판
-    public Page<BoardResponse.GameListDTO> gameList(String sort, String keyword, Pageable pageable) {
+    public BoardResponse.GamePageDTO gameList(String sort, String keyword, Pageable pageable) {
         Sort.Direction direction = "1".equals(sort) ? Sort.Direction.ASC : Sort.Direction.DESC;
-        Pageable sortedPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(direction, "id"));
+        int pageNumber = Math.max(0, pageable.getPageNumber() - 1); // 페이지 번호가 0보다 작지 않도록 설정
+        Pageable sortedPageable = PageRequest.of(pageNumber, pageable.getPageSize(), Sort.by(direction, "id"));
 
+        Page<Board> boardList;
         if (keyword != null) {
-            Page<Board> boardList = boardRepository.findByGameWithKeyword(keyword, sortedPageable).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
-            return boardList.map(board -> new BoardResponse.GameListDTO(board));
+            boardList = boardRepository.findByGameWithKeyword(keyword, sortedPageable).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
         } else {
-            Page<Board> boardList = boardRepository.findByGame(sortedPageable).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
-            return boardList.map(board -> new BoardResponse.GameListDTO(board));
+            boardList = boardRepository.findByGame(sortedPageable).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
         }
+
+        // pageInfo에 전달할 때는 다시 1을 더해서 1부터 시작하도록 설정
+        Pageable originalPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), pageable.getSort());
+        return new BoardResponse.GamePageDTO(boardList, originalPageable);
     }
 
+
+
     // 영화 게시판
-    public Page<BoardResponse.MovieListDTO> movieList(String sort, String keyword,Pageable pageable) {
+    public Page<BoardResponse.MovieListDTO> movieList(String sort, String keyword, Pageable pageable) {
         Sort.Direction direction = "1".equals(sort) ? Sort.Direction.ASC : Sort.Direction.DESC;
         Pageable sortedPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(direction, "id"));
 
@@ -121,7 +127,7 @@ public class BoardService {
     }
 
     // 음식 게시판
-    public Page<BoardResponse.FoodListDTO> foodList(String sort, String keyword,Pageable pageable) {
+    public Page<BoardResponse.FoodListDTO> foodList(String sort, String keyword, Pageable pageable) {
         Sort.Direction direction = "1".equals(sort) ? Sort.Direction.ASC : Sort.Direction.DESC;
         Pageable sortedPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(direction, "id"));
 
@@ -158,11 +164,11 @@ public class BoardService {
     }
 
     // 전체 검색
-    public BoardResponse.SearchDTO search(String keyword, String sort,Pageable pageable) {
+    public BoardResponse.SearchDTO search(String keyword, String sort, Pageable pageable) {
         Sort.Direction direction = "1".equals(sort) ? Sort.Direction.ASC : Sort.Direction.DESC;
         Pageable sortedPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(direction, "id"));
 
-        Page<Board> boardList = boardRepository.findByKeyword(keyword,sortedPageable).orElseThrow(() -> new Exception404("검색 결과가 없습니다."));
+        Page<Board> boardList = boardRepository.findByKeyword(keyword, sortedPageable).orElseThrow(() -> new Exception404("검색 결과가 없습니다."));
         Long count = boardRepository.findWithCount(keyword);
         return new BoardResponse.SearchDTO(boardList, count);
     }

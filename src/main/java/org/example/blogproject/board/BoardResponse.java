@@ -3,11 +3,14 @@ package org.example.blogproject.board;
 import lombok.Data;
 import org.example.blogproject._core.utils.CategoryFormat;
 import org.example.blogproject._core.utils.DateFormat;
+import org.example.blogproject._core.utils.PagingUtil;
 import org.example.blogproject.reply.Reply;
 import org.example.blogproject.reply2.Reply2;
 import org.example.blogproject.user.SessionUser;
 import org.example.blogproject.user.User;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -96,21 +99,33 @@ public class BoardResponse {
 
     // 게임 페이지
     @Data
-    public static class GameListDTO {
-        private Integer id;
-        private String title;
-        private String createdAt;
-        private String username;
-        private String boardImg;
+    public static class GamePageDTO {
+        private PagingUtil pagingUtil;
+        private List<GameListDTO> gameListDTOs = new ArrayList<>();
 
-        public GameListDTO(Board board) {
-            this.id = board.getId();
-            this.title = board.getTitle();
-            this.createdAt = DateFormat.formatTimestamp(board.getCreatedAt());
-            this.username = board.getUser().getUsername();
-            this.boardImg = board.getBoardImg();
+        public GamePageDTO(Page<Board> boardList, Pageable pageable) {
+            this.pagingUtil = new PagingUtil(boardList, pageable);
+            this.gameListDTOs = boardList.stream().map(GameListDTO::new).collect(Collectors.toList());
+        }
+
+        @Data
+        public static class GameListDTO {
+            private Integer id;
+            private String title;
+            private String createdAt;
+            private String username;
+            private String boardImg;
+
+            public GameListDTO(Board board) {
+                this.id = board.getId();
+                this.title = board.getTitle();
+                this.createdAt = DateFormat.formatTimestamp(board.getCreatedAt());
+                this.username = board.getUser().getUsername();
+                this.boardImg = board.getBoardImg();
+            }
         }
     }
+
 
     // 음식 페이지
     @Data
