@@ -7,6 +7,7 @@ import org.example.blogproject.reply.Reply;
 import org.example.blogproject.reply2.Reply2;
 import org.example.blogproject.user.SessionUser;
 import org.example.blogproject.user.User;
+import org.springframework.data.domain.Page;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -287,8 +288,8 @@ public class BoardResponse {
         private List<BoardDTO> boards = new ArrayList<>();
         public Long count;
 
-        public SearchDTO(List<Board> boardList, Long count) {
-            this.boards = boardList.stream().map(board -> new BoardDTO(board)).toList();
+        public SearchDTO(Page<Board> boardList, Long count) {
+            this.boards = boardList.map(board -> new BoardDTO(board)).toList();
             this.count = count;
         }
 
