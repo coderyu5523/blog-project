@@ -9,6 +9,13 @@ insert into board_tb(title,content,category,board_img,user_id,created_at) values
 insert into board_tb(title,content,category,board_img,user_id,created_at) values ('게임 제목3','게임 내용3','게임',null,3,now());
 insert into board_tb(title,content,category,board_img,user_id,created_at) values ('게임 제목4','게임 내용4','게임',null,4,now());
 insert into board_tb(title,content,category,board_img,user_id,created_at) values ('게임 제목5','게임 내용5','게임',null,5,now());
+insert into board_tb(title,content,category,board_img,user_id,created_at) values ('게임 제목6','게임 내용5','게임',null,5,now());
+insert into board_tb(title,content,category,board_img,user_id,created_at) values ('게임 제목7','게임 내용5','게임',null,5,now());
+insert into board_tb(title,content,category,board_img,user_id,created_at) values ('게임 제목8','게임 내용5','게임',null,5,now());
+insert into board_tb(title,content,category,board_img,user_id,created_at) values ('게임 제목9','게임 내용5','게임',null,5,now());
+insert into board_tb(title,content,category,board_img,user_id,created_at) values ('게임 제목10','게임 내용5','게임',null,5,now());
+insert into board_tb(title,content,category,board_img,user_id,created_at) values ('게임 제목11','게임 내용5','게임',null,5,now());
+insert into board_tb(title,content,category,board_img,user_id,created_at) values ('게임 제목12','게임 내용5','게임',null,5,now());
 insert into board_tb(title,content,category,board_img,user_id,created_at) values ('음식 제목6','음식 내용6','음식',null,1,now());
 insert into board_tb(title,content,category,board_img,user_id,created_at) values ('음식 제목7','음식 내용7','음식',null,2,now());
 insert into board_tb(title,content,category,board_img,user_id,created_at) values ('음식 제목8','음식 내용8','음식',null,3,now());

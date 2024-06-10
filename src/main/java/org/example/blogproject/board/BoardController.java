@@ -4,6 +4,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.example.blogproject.user.SessionUser;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,8 +34,8 @@ public class BoardController {
 
     // 게임 게시판
     @GetMapping("/boards/games")
-    public String gameList(@RequestParam(value = "sort", required = false) String sort, @RequestParam(value = "keyword", required = false) String keyword, HttpServletRequest request) {
-        List<BoardResponse.GameListDTO> responseDTO = boardService.gameList(sort, keyword);
+    public String gameList(@RequestParam(value = "sort", required = false) String sort, @RequestParam(value = "keyword", required = false) String keyword, HttpServletRequest request,@PageableDefault(size = 5,sort = "id",direction = Sort.Direction.DESC) Pageable pageable) {
+        Page<BoardResponse.GameListDTO> responseDTO = boardService.gameList(sort, keyword,pageable);
         request.setAttribute("GameListDTO", responseDTO);
         return "list/games-list";
     }

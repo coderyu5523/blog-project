@@ -11,6 +11,8 @@ import org.example.blogproject.reply2.Reply2Repository;
 import org.example.blogproject.user.SessionUser;
 import org.example.blogproject.user.User;
 import org.example.blogproject.user.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -88,16 +90,16 @@ public class BoardService {
     }
 
     // 게임 게시판
-    public List<BoardResponse.GameListDTO> gameList(String sort, String keyword) {
-        if (keyword != null) {
-            List<Board> boardList = boardRepository.findByGameWithKeyword(keyword).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
-            boardList.sort("1".equals(sort) ? Comparator.comparing(Board::getId) : Comparator.comparing(Board::getId).reversed());
-            return boardList.stream().map(board -> new BoardResponse.GameListDTO(board)).toList();
-        } else {
-            List<Board> boardList = boardRepository.findByGame().orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
-            boardList.sort("1".equals(sort) ? Comparator.comparing(Board::getId) : Comparator.comparing(Board::getId).reversed());
-            return boardList.stream().map(board -> new BoardResponse.GameListDTO(board)).toList();
-        }
+    public Page<BoardResponse.GameListDTO> gameList(String sort, String keyword, Pageable pageable) {
+            if (keyword != null) {
+                Page<Board> boardList = boardRepository.findByGameWithKeyword(keyword,pageable).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
+//            boardList.sort("1".equals(sort) ? Comparator.comparing(Board::getId) : Comparator.comparing(Board::getId).reversed());
+                return boardList.map(board -> new BoardResponse.GameListDTO(board));
+            } else {
+                Page<Board> boardList = boardRepository.findByGame(pageable).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
+//            boardList.sort("1".equals(sort) ? Comparator.comparing(Board::getId) : Comparator.comparing(Board::getId).reversed());
+                return boardList.map(board -> new BoardResponse.GameListDTO(board));
+            }
     }
 
     // 영화 게시판

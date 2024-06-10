@@ -1,5 +1,7 @@
 package org.example.blogproject.board;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -19,7 +21,7 @@ public interface BoardRepository extends JpaRepository<Board, Integer> {
     Optional<List<Board>> findBySprots();
 
     @Query("select b from Board b join fetch b.user where b.category = '게임' ORDER BY b.id DESC")
-    Optional<List<Board>> findByGame();
+    Optional<Page<Board>> findByGame(Pageable pageable);
 
     @Query("select b from Board b join fetch b.user where b.category = '음식' ORDER BY b.id DESC")
     Optional<List<Board>> findByFood();
@@ -40,7 +42,7 @@ public interface BoardRepository extends JpaRepository<Board, Integer> {
     Optional<List<Board>> findBySprotsWithKeyword(@Param("keyword") String keyword);
 
     @Query("select b from Board b join fetch b.user where b.category ='게임' and (b.title like %:keyword% or b.content like %:keyword% or b.user.username like %:keyword%) order by b.id DESC")
-    Optional<List<Board>> findByGameWithKeyword(String keyword);
+    Optional<Page<Board>> findByGameWithKeyword(String keyword, Pageable pageable);
 
     @Query("select b from Board b join fetch b.user where b.category ='영화' and (b.title like %:keyword% or b.content like %:keyword% or b.user.username like %:keyword%) order by b.id DESC")
     Optional<List<Board>> findByMovieWithKeyword(String keyword);
