@@ -93,9 +93,7 @@ public class BoardService {
 
     // 게임 게시판
     public Page<BoardResponse.GameListDTO> gameList(String sort, String keyword, Pageable pageable) {
-        // Determine sort direction
         Sort.Direction direction = "1".equals(sort) ? Sort.Direction.ASC : Sort.Direction.DESC;
-        // Create new pageable with sort direction
         Pageable sortedPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(direction, "id"));
 
         if (keyword != null) {

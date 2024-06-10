@@ -73,40 +73,21 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
 
-        function updateSortLink(sortOrder) {
-            const urlParams = new URLSearchParams(window.location.search);
+        function updateSort(sortOrder) {
+            let urlParams = new URLSearchParams(window.location.search);
             urlParams.set('sort', sortOrder);
             window.location.search = urlParams.toString();
         }
 
-        const sortLatest = document.getElementById('sort-latest');
-        const sortOldest = document.getElementById('sort-oldest');
+        let sortLatest = document.getElementById('sort-latest');
+        let sortOldest = document.getElementById('sort-oldest');
 
         sortLatest.addEventListener('click', function (e) {
-            e.preventDefault();
-            updateSortLink('0');
+            updateSort('0');
         });
 
         sortOldest.addEventListener('click', function (e) {
-            e.preventDefault();
-            updateSortLink('1');
+            updateSort('1');
         });
-
-        // 현재 URL의 쿼리 파라미터에서 sort 값 가져오기
-        const currentUrlParams = new URLSearchParams(window.location.search);
-        const currentSort = currentUrlParams.get('sort');
-
-        // // 현재 정렬 상태에 따라 버튼 스타일 변경
-        // if (currentSort === '0') {
-        //     sortLatest.style.fontWeight = 'bold';
-        //     sortLatest.style.color = 'blue';
-        //     sortOldest.style.fontWeight = 'normal';
-        //     sortOldest.style.color = 'black';
-        // } else if (currentSort === '1') {
-        //     sortLatest.style.fontWeight = 'normal';
-        //     sortLatest.style.color = 'black';
-        //     sortOldest.style.fontWeight = 'bold';
-        //     sortOldest.style.color = 'blue';
-        // }
     });
 </script>
