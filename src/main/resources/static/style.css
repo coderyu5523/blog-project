@@ -83,6 +83,26 @@ a {
     padding-right: 150px;
 
 }
+.pagination-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.pagination-link:focus,
+.pagination-link:active {
+    outline: none;
+    box-shadow: none;
+    background-color: #d3d3d3; /* 회색 배경색 */
+    color: #000; /* 검정색 글자색 */
+}
+
+.page-item.active .pagination-link {
+    background-color: #d3d3d3; /* 회색 배경색 */
+    border-color: #d3d3d3;
+    color: #000; /* 검정색 글자색 */
+}
+
+
 
 .div-menu-right {
     display: grid;
