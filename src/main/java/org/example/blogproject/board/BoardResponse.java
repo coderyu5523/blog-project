@@ -81,19 +81,30 @@ public class BoardResponse {
 
     // 스포츠 페이지
     @Data
-    public static class SportsListDTO {
-        private Integer id;
-        private String title;
-        private String createdAt;
-        private String username;
-        private String boardImg;
+    public static class SportsPageDTO {
+        private PagingUtil pagingUtil;
+        private List<SportsListDTO> sportsListDTOs = new ArrayList<>();
 
-        public SportsListDTO(Board board) {
-            this.id = board.getId();
-            this.title = board.getTitle();
-            this.createdAt = DateFormat.formatTimestamp(board.getCreatedAt());
-            this.username = board.getUser().getUsername();
-            this.boardImg = board.getBoardImg();
+        public SportsPageDTO(Page<Board> boardList, Pageable pageable) {
+            this.pagingUtil = new PagingUtil(boardList, pageable);
+            this.sportsListDTOs = boardList.stream().map(SportsListDTO::new).toList();
+        }
+
+        @Data
+        public static class SportsListDTO {
+            private Integer id;
+            private String title;
+            private String createdAt;
+            private String username;
+            private String boardImg;
+
+            public SportsListDTO(Board board) {
+                this.id = board.getId();
+                this.title = board.getTitle();
+                this.createdAt = DateFormat.formatTimestamp(board.getCreatedAt());
+                this.username = board.getUser().getUsername();
+                this.boardImg = board.getBoardImg();
+            }
         }
     }
 
@@ -105,7 +116,7 @@ public class BoardResponse {
 
         public GamePageDTO(Page<Board> boardList, Pageable pageable) {
             this.pagingUtil = new PagingUtil(boardList, pageable);
-            this.gameListDTOs = boardList.stream().map(GameListDTO::new).collect(Collectors.toList());
+            this.gameListDTOs = boardList.stream().map(GameListDTO::new).toList();
         }
 
         @Data
@@ -129,37 +140,59 @@ public class BoardResponse {
 
     // 음식 페이지
     @Data
-    public static class FoodListDTO {
-        private Integer id;
-        private String title;
-        private String createdAt;
-        private String username;
-        private String boardImg;
+    public static class FoodPageDTO {
+        private PagingUtil pagingUtil;
+        private List<FoodListDTO> foodListDTOs = new ArrayList<>();
 
-        public FoodListDTO(Board board) {
-            this.id = board.getId();
-            this.title = board.getTitle();
-            this.createdAt = DateFormat.formatTimestamp(board.getCreatedAt());
-            this.username = board.getUser().getUsername();
-            this.boardImg = board.getBoardImg();
+        public FoodPageDTO(Page<Board> boardList, Pageable pageable) {
+            this.pagingUtil = new PagingUtil(boardList, pageable);
+            this.foodListDTOs = boardList.stream().map(FoodListDTO::new).toList();
+        }
+
+        @Data
+        public static class FoodListDTO {
+            private Integer id;
+            private String title;
+            private String createdAt;
+            private String username;
+            private String boardImg;
+
+            public FoodListDTO(Board board) {
+                this.id = board.getId();
+                this.title = board.getTitle();
+                this.createdAt = DateFormat.formatTimestamp(board.getCreatedAt());
+                this.username = board.getUser().getUsername();
+                this.boardImg = board.getBoardImg();
+            }
         }
     }
 
     // 영화 페이지
     @Data
-    public static class MovieListDTO {
-        private Integer id;
-        private String title;
-        private String createdAt;
-        private String username;
-        private String boardImg;
+    public static class MoviePageDTO {
+        private PagingUtil pagingUtil;
+        private List<MovieListDTO> movieListDTOs = new ArrayList<>();
 
-        public MovieListDTO(Board board) {
-            this.id = board.getId();
-            this.title = board.getTitle();
-            this.createdAt = DateFormat.formatTimestamp(board.getCreatedAt());
-            this.username = board.getUser().getUsername();
-            this.boardImg = board.getBoardImg();
+        public MoviePageDTO(Page<Board> boardList, Pageable pageable) {
+            this.pagingUtil = new PagingUtil(boardList, pageable);
+            this.movieListDTOs = boardList.stream().map(MovieListDTO::new).toList();
+        }
+
+        @Data
+        public static class MovieListDTO {
+            private Integer id;
+            private String title;
+            private String createdAt;
+            private String username;
+            private String boardImg;
+
+            public MovieListDTO(Board board) {
+                this.id = board.getId();
+                this.title = board.getTitle();
+                this.createdAt = DateFormat.formatTimestamp(board.getCreatedAt());
+                this.username = board.getUser().getUsername();
+                this.boardImg = board.getBoardImg();
+            }
         }
     }
 

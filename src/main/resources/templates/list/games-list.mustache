@@ -59,7 +59,7 @@
             <div class="d-flex justify-content-center">
                 <ul class="pagination">
                     <li class="page-item {{^hasPrevious}}disabled{{/hasPrevious}}">
-                        <a class="page-link" href="?page={{prevPageNumber}}">Previous</a>
+                        <a class="page-link" href="?page={{prevPageNumber}}"><</a>
                     </li>
                     {{#pageNumbers}}
                         <li class="page-item {{#isActive}}active{{/isActive}}">
@@ -67,7 +67,7 @@
                         </li>
                     {{/pageNumbers}}
                     <li class="page-item {{#isNextPageDisabled}}disabled{{/isNextPageDisabled}}">
-                        <a class="page-link" href="?page={{nextPageNumber}}">Next</a>
+                        <a class="page-link" href="?page={{nextPageNumber}}">></a>
                     </li>
                 </ul>
             </div>

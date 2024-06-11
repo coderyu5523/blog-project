@@ -43,24 +43,24 @@ public class BoardController {
     // 스포츠 게시판
     @GetMapping("/boards/sports")
     public String sportsList(@RequestParam(value = "sort", required = false) String sort, @RequestParam(value = "keyword", required = false) String keyword, HttpServletRequest request, @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
-        Page<BoardResponse.SportsListDTO> responseDTO = boardService.sportsList(sort, keyword, pageable);
-        request.setAttribute("SportsListDTO", responseDTO);
+        BoardResponse.SportsPageDTO responseDTO = boardService.sportsList(sort, keyword, pageable);
+        request.setAttribute("SportsPageDTO", responseDTO);
         return "list/sports-list";
     }
 
     // 영화 게시판
     @GetMapping("/boards/movies")
     public String moviesList(@RequestParam(value = "sort", required = false) String sort, @RequestParam(value = "keyword", required = false) String keyword, HttpServletRequest request, @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
-        Page<BoardResponse.MovieListDTO> responseDTO = boardService.movieList(sort, keyword, pageable);
-        request.setAttribute("MovieListDTO", responseDTO);
+        BoardResponse.MoviePageDTO responseDTO = boardService.movieList(sort, keyword, pageable);
+        request.setAttribute("MoviePageDTO", responseDTO);
         return "list/movies-list";
     }
 
     // 음식 게시판
     @GetMapping("/boards/foods")
     public String foodsList(@RequestParam(value = "sort", required = false) String sort, @RequestParam(value = "keyword", required = false) String keyword, HttpServletRequest request, @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
-        Page<BoardResponse.FoodListDTO> responseDTO = boardService.foodList(sort, keyword, pageable);
-        request.setAttribute("FoodListDTO", responseDTO);
+        BoardResponse.FoodPageDTO responseDTO = boardService.foodList(sort, keyword, pageable);
+        request.setAttribute("FoodPageDTO", responseDTO);
         return "list/foods-list";
     }
 
@@ -115,7 +115,7 @@ public class BoardController {
     // 게시글 전체 검색
     @GetMapping("boards/search")
     public String search(@RequestParam(value = "sort", required = false) String sort, @RequestParam(value = "keyword", required = false) String keyword, HttpServletRequest request, @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
-        BoardResponse.SearchDTO responseDTO = boardService.search(keyword, sort,pageable);
+        BoardResponse.SearchDTO responseDTO = boardService.search(keyword, sort, pageable);
         request.setAttribute("SearchDTO", responseDTO);
         return "list/search-list";
     }

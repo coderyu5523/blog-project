@@ -79,17 +79,20 @@ public class BoardService {
     }
 
     // 스포츠 게시판
-    public Page<BoardResponse.SportsListDTO> sportsList(String sort, String keyword, Pageable pageable) {
+    public BoardResponse.SportsPageDTO sportsList(String sort, String keyword, Pageable pageable) {
         Sort.Direction direction = "1".equals(sort) ? Sort.Direction.ASC : Sort.Direction.DESC;
-        Pageable sortedPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(direction, "id"));
+        int pageNumber = Math.max(0, pageable.getPageNumber() - 1); // 페이지 번호가 0보다 작지 않도록 설정
+        Pageable sortedPageable = PageRequest.of(pageNumber, pageable.getPageSize(), Sort.by(direction, "id"));
 
+        Page<Board> boardList;
         if (keyword != null) {
-            Page<Board> boardList = boardRepository.findBySprotsWithKeyword(keyword, sortedPageable).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
-            return boardList.map(board -> new BoardResponse.SportsListDTO(board));
+            boardList = boardRepository.findBySprotsWithKeyword(keyword, sortedPageable).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
         } else {
-            Page<Board> boardList = boardRepository.findBySprots(sortedPageable).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
-            return boardList.map(board -> new BoardResponse.SportsListDTO(board));
+            boardList = boardRepository.findBySprots(sortedPageable).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
         }
+        // pageInfo에 전달할 때는 다시 1을 더해서 1부터 시작하도록 설정
+        Pageable originalPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), pageable.getSort());
+        return new BoardResponse.SportsPageDTO(boardList, originalPageable);
     }
 
     // 게임 게시판
@@ -104,40 +107,44 @@ public class BoardService {
         } else {
             boardList = boardRepository.findByGame(sortedPageable).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
         }
-
         // pageInfo에 전달할 때는 다시 1을 더해서 1부터 시작하도록 설정
         Pageable originalPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), pageable.getSort());
         return new BoardResponse.GamePageDTO(boardList, originalPageable);
     }
 
 
-
     // 영화 게시판
-    public Page<BoardResponse.MovieListDTO> movieList(String sort, String keyword, Pageable pageable) {
+    public BoardResponse.MoviePageDTO movieList(String sort, String keyword, Pageable pageable) {
         Sort.Direction direction = "1".equals(sort) ? Sort.Direction.ASC : Sort.Direction.DESC;
-        Pageable sortedPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(direction, "id"));
+        int pageNumber = Math.max(0, pageable.getPageNumber() - 1); // 페이지 번호가 0보다 작지 않도록 설정
+        Pageable sortedPageable = PageRequest.of(pageNumber, pageable.getPageSize(), Sort.by(direction, "id"));
 
+        Page<Board> boardList;
         if (keyword != null) {
-            Page<Board> boardList = boardRepository.findByMovieWithKeyword(keyword, sortedPageable).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
-            return boardList.map(board -> new BoardResponse.MovieListDTO(board));
+            boardList = boardRepository.findByMovieWithKeyword(keyword, sortedPageable).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
         } else {
-            Page<Board> boardList = boardRepository.findByMovie(sortedPageable).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
-            return boardList.map(board -> new BoardResponse.MovieListDTO(board));
+            boardList = boardRepository.findByMovie(sortedPageable).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
         }
+        // pageInfo에 전달할 때는 다시 1을 더해서 1부터 시작하도록 설정
+        Pageable originalPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), pageable.getSort());
+        return new BoardResponse.MoviePageDTO(boardList, originalPageable);
     }
 
     // 음식 게시판
-    public Page<BoardResponse.FoodListDTO> foodList(String sort, String keyword, Pageable pageable) {
+    public BoardResponse.FoodPageDTO foodList(String sort, String keyword, Pageable pageable) {
         Sort.Direction direction = "1".equals(sort) ? Sort.Direction.ASC : Sort.Direction.DESC;
-        Pageable sortedPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(direction, "id"));
+        int pageNumber = Math.max(0, pageable.getPageNumber() - 1); // 페이지 번호가 0보다 작지 않도록 설정
+        Pageable sortedPageable = PageRequest.of(pageNumber, pageable.getPageSize(), Sort.by(direction, "id"));
 
+        Page<Board> boardList;
         if (keyword != null) {
-            Page<Board> boardList = boardRepository.findByFoodWithKeyword(keyword, sortedPageable).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
-            return boardList.map(board -> new BoardResponse.FoodListDTO(board));
+            boardList = boardRepository.findByFoodWithKeyword(keyword, sortedPageable).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
         } else {
-            Page<Board> boardList = boardRepository.findByFood(sortedPageable).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
-            return boardList.map(board -> new BoardResponse.FoodListDTO(board));
+            boardList = boardRepository.findByFood(sortedPageable).orElseThrow(() -> new Exception404("조회된 정보가 없습니다."));
         }
+        // pageInfo에 전달할 때는 다시 1을 더해서 1부터 시작하도록 설정
+        Pageable originalPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), pageable.getSort());
+        return new BoardResponse.FoodPageDTO(boardList, originalPageable);
     }
 
     // 게시글 수정 페이지
