@@ -36,16 +36,25 @@
                     {{content}}
                 </div>
             </div>
-
-            {{#isBoardOwner}}
-                <!-- 수정삭제버튼 -->
-                <div class="d-flex justify-content-end">
-                    <a href="/boards/{{id}}/update-form" class="btn btn-warning me-1">수정</a>
-                    <form action="/boards/{{id}}/delete" method="post">
-                        <button class="btn btn-danger">삭제</button>
-                    </form>
+            <div class="d-flex justify-content-between align-items-center">
+                <div></div>
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-heart"></i> 좋아요
                 </div>
-            {{/isBoardOwner}}
+
+                <div class="btn-container">
+                    {{#isBoardOwner}}
+                        <!-- 수정삭제버튼 -->
+                        <a href="/boards/{{id}}/update-form" class="btn btn-warning me-1">수정</a>
+                        <form action="/boards/{{id}}/delete" method="post">
+                            <button class="btn btn-danger">삭제</button>
+                        </form>
+                    {{/isBoardOwner}}
+                </div>
+            </div>
+
+
+
             <!-- 댓글 -->
             <div class="card mt-3">
                 <!-- 댓글등록 -->
