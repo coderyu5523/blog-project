@@ -59,15 +59,15 @@
             <div class="d-flex justify-content-center">
                 <ul class="pagination">
                     <li class="page-item {{^hasPrevious}}disabled{{/hasPrevious}}">
-                        <a class="page-link" href="?page={{prevPageNumber}}"><</a>
+                        <a class="page-link pagination-link" href="?page={{prevPageNumber}}"><</a>
                     </li>
                     {{#pageNumbers}}
                         <li class="page-item {{#isActive}}active{{/isActive}}">
-                            <a class="page-link" href="?page={{pageNumber}}">{{pageNumber}}</a>
+                            <a class="page-link pagination-link" href="?page={{pageNumber}}">{{pageNumber}}</a>
                         </li>
                     {{/pageNumbers}}
                     <li class="page-item {{#isNextPageDisabled}}disabled{{/isNextPageDisabled}}">
-                        <a class="page-link" href="?page={{nextPageNumber}}">></a>
+                        <a class="page-link pagination-link" href="?page={{nextPageNumber}}">></a>
                     </li>
                 </ul>
             </div>
@@ -76,26 +76,33 @@
 {{/GamePageDTO}}
 <!-- 바디 end -->
 {{>layout/footer}}
-
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    $(document).ready(function () {
+
+        // 정렬
         function updateSort(sortOrder) {
             let urlParams = new URLSearchParams(window.location.search);
             urlParams.set('sort', sortOrder);
             window.location.search = urlParams.toString();
         }
 
-        let sortLatest = document.getElementById('sort-latest');
-        let sortOldest = document.getElementById('sort-oldest');
-
-        sortLatest.addEventListener('click', function (e) {
+        $('#sort-latest').on('click', function (e) {
             e.preventDefault();
             updateSort('0');
         });
 
-        sortOldest.addEventListener('click', function (e) {
+        $('#sort-oldest').on('click', function (e) {
             e.preventDefault();
             updateSort('1');
+        });
+
+        // 페이지네이션
+        $(document).on('click', '.pagination-link', function (e) {
+            e.preventDefault();
+            let urlParams = new URLSearchParams(window.location.search);
+            let pageParam = $(this).attr('href').split('page=')[1];
+            urlParams.set('page', pageParam);
+            window.location.search = urlParams.toString();
         });
     });
 </script>
