@@ -335,10 +335,12 @@ public class BoardResponse {
     public static class SearchDTO {
         private List<BoardDTO> boards = new ArrayList<>();
         public Long count;
+        private PagingUtil pagingUtil;
 
-        public SearchDTO(Page<Board> boardList, Long count) {
+        public SearchDTO(Page<Board> boardList, Long count,Pageable pageable) {
             this.boards = boardList.map(board -> new BoardDTO(board)).toList();
             this.count = count;
+            this.pagingUtil = new PagingUtil(boardList,pageable);
         }
 
         @Data

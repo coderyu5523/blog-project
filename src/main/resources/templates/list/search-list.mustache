@@ -54,19 +54,23 @@
             </table>
         </div>
     </main>
-    <div class="d-flex justify-content-center">
-        <ul class="pagination">
-            <li class="page-item disabled">
-                <a class="page-link" href="?page=">Previous</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="?page=">1</a>
-            </li>
-            <li class="page-item disabled">
-                <a class="page-link" href="?page=">Next</a>
-            </li>
-        </ul>
-    </div>
+    {{#pagingUtil}}
+        <div class="d-flex justify-content-center">
+            <ul class="pagination">
+                <li class="page-item {{^hasPrevious}}disabled{{/hasPrevious}}">
+                    <a class="page-link" href="?page={{prevPageNumber}}"><</a>
+                </li>
+                {{#pageNumbers}}
+                    <li class="page-item {{#isActive}}active{{/isActive}}">
+                        <a class="page-link" href="?page={{pageNumber}}">{{pageNumber}}</a>
+                    </li>
+                {{/pageNumbers}}
+                <li class="page-item {{#isNextPageDisabled}}disabled{{/isNextPageDisabled}}">
+                    <a class="page-link" href="?page={{nextPageNumber}}">></a>
+                </li>
+            </ul>
+        </div>
+    {{/pagingUtil}}
 {{/SearchDTO}}
 <!-- 바디 end -->
 {{>layout/footer}}

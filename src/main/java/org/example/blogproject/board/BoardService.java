@@ -173,10 +173,12 @@ public class BoardService {
     // 전체 검색
     public BoardResponse.SearchDTO search(String keyword, String sort, Pageable pageable) {
         Sort.Direction direction = "1".equals(sort) ? Sort.Direction.ASC : Sort.Direction.DESC;
-        Pageable sortedPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(direction, "id"));
+        int pageNumber = Math.max(0, pageable.getPageNumber() - 1); // 페이지 번호가 0보다 작지 않도록 설정
+        Pageable sortedPageable = PageRequest.of(pageNumber, pageable.getPageSize(), Sort.by(direction, "id"));
 
         Page<Board> boardList = boardRepository.findByKeyword(keyword, sortedPageable).orElseThrow(() -> new Exception404("검색 결과가 없습니다."));
         Long count = boardRepository.findWithCount(keyword);
-        return new BoardResponse.SearchDTO(boardList, count);
+        Pageable originalPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), pageable.getSort());
+        return new BoardResponse.SearchDTO(boardList, count, originalPageable);
     }
 }
