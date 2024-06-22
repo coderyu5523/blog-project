@@ -27,17 +27,10 @@
 </tr>
 
 <tr>
-  <td align=center>4. 게시판 페이지</td>
+  <td align=center>5. 게시글 작성</td>
 </tr>
 <tr>
-  <td><img src="https://github.com/coderyu5523/project-final-flutter/assets/153602328/3482bd93-baa3-46bc-a1f3-c4047228510d"  width="800" height="450"/></td>
-</tr>
-
-<tr>
-  <td align=center>3. 로그인</td>
-</tr>
-<tr>
-  <td><img src="https://github.com/coderyu5523/project-final-flutter/assets/153602328/8ef7d677-397c-441c-8e6f-c3c6221e8df8"  width="800" height="450"/></td>
+  <td><img src="https://github.com/coderyu5523/project-final-flutter/assets/153602328/b726f275-f5fd-43c3-8a18-15016259842a"  width="800" height="450"/></td>
 </tr>
 
 <tr>
@@ -47,63 +40,87 @@
   <td><img src="https://github.com/coderyu5523/project-final-flutter/assets/153602328/9913c8fd-16e3-4bb5-a0f5-60b64863d6b6"  width="800" height="450"/></td>
 </tr>
 
+<tr>
+  <td align=center>7. 게시글 삭제</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/coderyu5523/project-final-flutter/assets/153602328/98457e1f-b1e1-4316-ad36-262d62852f1b"  width="800" height="450"/></td>
+</tr>
+
+<tr>
+  <td align=center>8. 수정 삭제 버튼 권한</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/coderyu5523/project-final-flutter/assets/153602328/8efe58e8-df98-45fc-9f26-54b9a5ed280e"  width="800" height="450"/></td>
+</tr>
+
+<tr>
+  <td align=center>9. 댓글작성</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/coderyu5523/project-final-flutter/assets/153602328/cfb1a322-3395-47e7-bdf9-77aac6fd379d"  width="800" height="450"/></td>
+</tr>
+
+<tr>
+  <td align=center>10. 대댓글 작성</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/coderyu5523/project-final-flutter/assets/153602328/d76f8d94-3c08-4afb-9013-627a23edd4b8"  width="800" height="450"/></td>
+</tr>
+
+<tr>
+  <td align=center>10. 대댓글 작성</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/coderyu5523/project-final-flutter/assets/153602328/d76f8d94-3c08-4afb-9013-627a23edd4b8"  width="800" height="450"/></td>
+</tr>
+
+<tr>
+  <td align=center>11. 대댓글 삭제</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/coderyu5523/project-final-flutter/assets/153602328/ebbec8ed-3bd9-4a71-b02b-ba4b59e23179"  width="800" height="450"/></td>
+</tr>
+
+<tr>
+  <td align=center>12. 댓글 작성</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/coderyu5523/project-final-flutter/assets/153602328/c653ceb9-1ce1-468d-9591-3fea5b75c904"  width="800" height="450"/></td>
+</tr>
+
+<tr>
+  <td align=center>13. 게시글 정렬(오름차순, 내림차순)</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/coderyu5523/project-final-flutter/assets/153602328/60a6c8ce-b2cd-426f-a137-947e485568e2"  width="800" height="450"/></td>
+</tr>
+
+<tr>
+  <td align=center>14. 정렬 & 페이지네이션</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/coderyu5523/project-final-flutter/assets/153602328/07a1ceaf-ad8c-4943-b356-09f953b8cd0c"  width="800" height="450"/></td>
+</tr>
+
+<tr>
+  <td align=center>15. 검</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/coderyu5523/project-final-flutter/assets/153602328/c9c34a3a-be95-4b79-bf19-a78aab89d49b"  width="800" height="450"/></td>
+</tr>
+<tr>
+  <td align=center>16. 검색 & 정렬 & 페이지네이션</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/coderyu5523/project-final-flutter/assets/153602328/fdd9ca8d-86e3-476e-bb1c-0e60ecec695a"  width="800" height="450"/></td>
+</tr>
 
 </table>
-
 <br>
 
-# 4. 진행상황
 
-## 류재성
-- 프로젝트 세팅
-- 테이블 설계
-- 회원정보 수정 view
-- 메인페이지 통신
-- 목표 체중,체지방, 근육량 insert
-- 현재 체중,체지방,근육량 insert
-- 활동 메인 통신
-- 활동 걸음 페이지 통신
-- 활동 물마시기 페이지 통신
-- 활동 나의 변화 페이지 통신
-- workmanager 라이브러리 적용
-
-
-## 김정수
-- 테이블 설계
-- 메인페이지 view
-- 마이페이지 view
-- 챌린지 페이지 통신
-- 챌린지 상세보기 페이지 통신
-- 진행중인 페이지 통신
-- 설문조사 페이지 통신
-- 식단 페이지 통신
-- 식단 업로드
-- 식단 삭제
-- 식단 검색
-- 상태 관리
-
-
-## 장유진
-- 테이블 설계
-- 시작 페이지 view
-- 로그인, 회원가입 페이지 view
-- 활동 메인 페이지, 걸음수 상세페이지, 물 마시기 상세페이지 view
-- 활동 식단 페이지, 식단 업로드 페이지 view
-- 활동 나의 변화 페이지 view
-- 챌린지 페이지 view
-- 챌린지 상세 페이지, 진행중인 챌린지 상세 페이지 view
-- 설문조사, 설문조사 상세 페이지 view
-- 문의 view
-- 전화걸기, 이메일보내기 적용(url_launcher)
-- 만보기 적용(pedometer)
-- 차트(fl_chart) 적용
-- 프로그레스바(syncfusion_flutter_gauges) 적용
-- 달력(calendar_agenda) 적용
-- 활동 권한 설정(permission_handler)
-
-<br>
-
-# 5. 개발 환경
+#  개발 환경
 <span>
  <h3><img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand%20gestures/Eyes.png" width=30" /> IDE</h3>
  <img src="https://img.shields.io/badge/Android%20Studio-3DDC84.svg?style=for-the-badge&logo=android-studio&logoColor=white"/>
