@@ -69,13 +69,6 @@
 </tr>
 
 <tr>
-  <td align=center>10. 대댓글 작성</td>
-</tr>
-<tr>
-  <td><img src="https://github.com/coderyu5523/project-final-flutter/assets/153602328/d76f8d94-3c08-4afb-9013-627a23edd4b8"  width="800" height="450"/></td>
-</tr>
-
-<tr>
   <td align=center>11. 대댓글 삭제</td>
 </tr>
 <tr>
