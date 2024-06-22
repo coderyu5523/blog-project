@@ -1,6 +1,4 @@
-# 1.바디키(건강 습관 관리 플랫폼)
-
-
+# 개인 서브 블로그 프로젝트
 
 
 # 기능 소개
@@ -19,6 +17,27 @@
 </tr>
 <tr>
   <td><img src="https://github.com/coderyu5523/project-final-flutter/assets/153602328/41da1e93-8cf3-49a8-88a0-6219524defb3"  width="800" height="450"/></td>
+</tr>
+
+<tr>
+  <td align=center>3. 메인페이지</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/coderyu5523/project-final-flutter/assets/153602328/8ef7d677-397c-441c-8e6f-c3c6221e8df8"  width="800" height="450"/></td>
+</tr>
+
+<tr>
+  <td align=center>4. 게시판 페이지</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/coderyu5523/project-final-flutter/assets/153602328/3482bd93-baa3-46bc-a1f3-c4047228510d"  width="800" height="450"/></td>
+</tr>
+
+<tr>
+  <td align=center>3. 로그인</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/coderyu5523/project-final-flutter/assets/153602328/8ef7d677-397c-441c-8e6f-c3c6221e8df8"  width="800" height="450"/></td>
 </tr>
 
 <tr>
