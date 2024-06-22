@@ -1,12 +1,29 @@
 # 개인 서브 블로그 프로젝트
 
 
-# 기능 소개
+## 구현 기능
+- 회원가입
+- 로그인
+- 게시글 목록보기
+- 게시글 상세보기
+- 게시글 수정
+- 게시글 삭제
+- 댓글 작성
+- 댓글 삭제
+- 대댓글 작성
+- 대댓글 삭제
+- 검색
+- 페이지네이션
+- 정렬
+- 사진 업로드
+
+
+## 구현 화면
 
 
 <table style="border: 2px;">
 <tr>
-  <td align=center>1. 회원가입</td>
+  <td align=center> ###1. 회원가입</td>
 </tr>
 <tr>
   <td><img src="https://github.com/coderyu5523/project-final-flutter/assets/153602328/65b519b2-c2ff-48ca-a808-e643ef5852ba"  width="800" height="450"/></td>
@@ -131,16 +148,14 @@
 <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
 <img src="https://img.shields.io/badge/mustache-F7DF1E?style=for-the-badge&logo=Mustache&logoColor=white"/>
 <img src="https://img.shields.io/badge/jQuery-0769AD.svg?style=for-the-badge&logo=jquery&logoColor=white"/>
-<img src="https://img.shields.io/badge/Chart.js-FF6384.svg?style=for-the-badge&logo=chartdotjs&logoColor=white"/>
 
 
   <h3><img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand%20gestures/Eyes.png" width=30" /> 언어</h3>
   <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white"/>
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white"/>
 
-  <h3><img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand%20gestures/Eyes.png" width=30" /> 협업 툴</h3>
+  <h3><img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand%20gestures/Eyes.png" width=30" /> 형상관리 툴</h3>
 <img src="https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white"/>
-<img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"/>
 </span>
 
 ## 프로젝트 아키텍쳐 : MVC 설계
