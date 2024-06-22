@@ -23,7 +23,7 @@
 
 <table style="border: 2px;">
 <tr>
-  <td align=center> ###1. 회원가입</td>
+  <td align="center"><strong style="font-size: 20px;">1. 회원가입</strong></td>
 </tr>
 <tr>
   <td><img src="https://github.com/coderyu5523/project-final-flutter/assets/153602328/65b519b2-c2ff-48ca-a808-e643ef5852ba"  width="800" height="450"/></td>
